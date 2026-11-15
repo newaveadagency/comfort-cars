@@ -105,7 +105,7 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .suf{position:relative}.suf span{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
 .suf input{padding-right:46px}
 /* slike */
-.drop{border:2px dashed var(--line);border-radius:var(--r-md);padding:26px;text-align:center;color:var(--muted);cursor:pointer;transition:border-color .2s,background .2s}
+.drop{display:block;border:2px dashed var(--line);border-radius:var(--r-md);padding:26px;text-align:center;color:var(--muted);cursor:pointer;transition:border-color .2s,background .2s}
 .drop:hover,.drop.over{border-color:var(--brand);background:var(--brand-tint);color:var(--ink)}
 .drop b{color:var(--ink)}
 .drop svg{width:30px;height:30px;color:var(--brand);margin-bottom:8px}
@@ -152,6 +152,85 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .up-car span{display:block;font-size:13px;color:var(--muted)}
 .up-m{margin-top:12px;background:var(--stone);border-radius:12px;padding:12px 14px;font-size:14.5px;color:var(--ink-2);white-space:pre-line}
 @media(max-width:700px){.up-b{grid-template-columns:1fr}}
+
+/* financije, kalendar, analitika */
+.lock{font-size:12.5px;color:var(--muted);font-weight:500}
+.finsold{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
+.finsold .hint{font-size:12.5px;color:var(--muted);margin-top:8px}
+.finsold h3,.h3{font-size:15px;font-weight:700;margin-bottom:10px}
+.finsum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.finsum div{background:var(--stone);border-radius:12px;padding:12px 14px}
+.finsum small{display:block;font-size:12px;color:var(--muted)}
+.finsum b{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.neg{color:#b91c1c}
+@media(max-width:760px){.finsum{grid-template-columns:1fr 1fr}}
+.muted{color:var(--muted);font-size:14px}
+.kal{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+@media(max-width:1200px){.kal{grid-template-columns:1fr}}
+.khead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.khead h2{margin:0 6px;text-transform:capitalize;min-width:170px}
+.khead .ib{font-size:22px;line-height:1}
+.klegend{margin-left:auto;display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2)}
+.klegend span{display:inline-flex;align-items:center;gap:6px}
+.klegend i,.kchip i,.kev>i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:0 0 auto}
+.kgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.kdow{font-size:12px;font-weight:600;color:var(--muted);padding:4px 6px}
+.kday{min-height:104px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:6px;text-align:left;display:flex;flex-direction:column;gap:3px;cursor:pointer;overflow:hidden;font:inherit}
+.kday:hover{border-color:#cfccc5}
+.kday.empty{background:transparent;border-color:transparent;cursor:default}
+.kday.today .kn{background:var(--brand);color:#fff}
+.kday.ksel{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.kn{font-size:13px;font-weight:700;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;margin-bottom:2px}
+.kchip{display:flex;align-items:center;gap:5px;font-size:11.5px;line-height:1.3;color:var(--ink);background:color-mix(in srgb,var(--c) 14%,#fff);border-radius:6px;padding:2px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kmore{font-size:11px;color:var(--muted);padding-left:4px}
+@media(max-width:700px){.kday{min-height:58px}.kchip{font-size:0;padding:0;width:8px;height:8px;background:none}.kchip i{width:8px;height:8px}.kmore{display:none}.kday{flex-direction:row;flex-wrap:wrap;align-content:flex-start}.kn{width:100%}}
+.klist{display:grid;gap:8px}
+.kev{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:var(--stone)}
+.kev>i{margin-top:7px;width:10px;height:10px}
+.kev>div{flex:1;min-width:0}
+.kev .kt{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.kev b{display:block;font-size:14.5px}
+.kev span:not(.kt){display:block;font-size:13px;color:var(--ink-2)}
+.kev a{color:inherit}
+.seg2{display:inline-flex;background:var(--stone);border-radius:999px;padding:3px;gap:2px}
+.seg2 button{border:0;background:transparent;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink-2)}
+.seg2 button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.chart{position:relative}
+.chart .bar.hov path{opacity:.82}
+.ctip{position:absolute;transform:translate(-50%,-100%);background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;padding:6px 10px;border-radius:8px;white-space:nowrap;pointer-events:none}
+.tview{margin-top:10px;font-size:13.5px}
+.tview summary{cursor:pointer;color:var(--muted);font-weight:600}
+.tview table{margin-top:8px}
+.r{text-align:right!important}
+.kpi2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.kpi2 div{background:var(--stone);border-radius:12px;padding:12px 14px}
+.kpi2 small{display:block;font-size:12px;color:var(--muted)}
+.kpi2 b{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.stale{display:grid;gap:6px}
+.stale a{display:flex;gap:12px;align-items:center;padding:6px;border-radius:12px}
+.stale a:hover{background:var(--stone)}
+.stale img{width:64px;height:48px;border-radius:9px;object-fit:cover;background:var(--stone)}
+.stale b{display:block;font-size:14px}
+.stale span{font-size:12.5px;color:var(--muted)}
+.stale em{margin-left:auto;font-style:normal;font-weight:700;font-size:14px;white-space:nowrap}
+.stale em.warn{color:#b45309}
+.bbars{display:grid;gap:10px}
+.bb{display:grid;grid-template-columns:110px minmax(0,1fr) 110px 90px;gap:12px;align-items:center;font-size:14px}
+.bb .bt{height:14px}
+.bb .bt i{display:block;height:100%;background:#ff4713;border-radius:0 4px 4px 0}
+.bb em{font-style:normal;font-weight:700;text-align:right}
+.bb small{color:var(--muted);text-align:right}
+@media(max-width:700px){.bb{grid-template-columns:80px minmax(0,1fr) 90px}.bb small{display:none}}
+.fint td a{color:inherit}
+.miss{color:#b45309;font-weight:600;font-size:13px}
+.bugw{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:1000px){.bugw{grid-template-columns:1fr}}
+.howb{padding-left:20px;display:grid;gap:10px;color:var(--ink-2);font-size:15px}
+.bst{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px}
+.bst i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.bimg{max-width:260px;border-radius:10px;margin-top:10px;border:1px solid var(--line)}
+.bagent{margin-top:12px;border-left:3px solid var(--brand);background:#fff7f3;border-radius:0 12px 12px 0;padding:12px 14px;font-size:14.5px;white-space:pre-line}
+.bagent code{background:#fff;padding:1px 6px;border-radius:5px}
 /* toast + modal */
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14.5px;transition:all .25s;z-index:200;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%)}
@@ -191,6 +270,9 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
   <symbol id="up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
   <symbol id="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></symbol>
   <symbol id="mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="bug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 17.5A2 2 0 0 0 4.1 20.5h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></symbol>
   <symbol id="upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 4v12M7 9l5-5 5 5"/></symbol>
 </svg>
 
@@ -200,6 +282,9 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
     <a class="nl" href="#pregled" data-v="pregled"><svg><use href="#grid"/></svg>Pregled</a>
     <a class="nl" href="#oglasi" data-v="oglasi"><svg><use href="#list"/></svg>Oglasi <span class="badge" id="navCount">0</span></a>
     <a class="nl" href="#upiti" data-v="upiti"><svg><use href="#mail"/></svg>Upiti <span class="badge" id="upCount" style="background:var(--brand);color:#fff">0</span></a>
+    <a class="nl" href="#kalendar" data-v="kalendar"><svg><use href="#cal"/></svg>Kalendar</a>
+    <a class="nl" href="#analitika" data-v="analitika"><svg><use href="#chart"/></svg>Analitika</a>
+    <a class="nl" href="#problemi" data-v="problemi"><svg><use href="#bug"/></svg>Prijava problema</a>
     <a class="btn btn-brand new" href="#novi"><svg class="i"><use href="#plus"/></svg>Novi oglas</a>
     <div class="bottom">
       <a class="nl" href="index.html" target="_blank"><svg><use href="#ext"/></svg>Otvori stranicu</a>
@@ -214,6 +299,7 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 <div class="modal" id="modal"><div class="box"><h3 id="mT"></h3><p id="mP"></p><div class="row"><button class="btn btn-ghost" id="mNo">Odustani</button><button class="btn btn-danger" id="mYes">Obriši</button></div></div></div>
 
 <script src="cards.js"></script>
+<script src="admin-fin.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const fmt=CC.fmt, esc=CC.esc, num=CC.num;
@@ -239,6 +325,8 @@ async function load(){
     if(!r.ok)throw 0;
     items=await r.json();online=true;
     try{upiti=await (await fetch("/api/upiti",{cache:"no-store"})).json()}catch(e){upiti=[]}
+    try{finData=await (await fetch("/api/fin",{cache:"no-store"})).json()}catch(e){finData={}}
+    try{kalData=await (await fetch("/api/kalendar",{cache:"no-store"})).json()}catch(e){kalData=[]}
   }catch(e){
     online=false;
     await new Promise(res=>{const s=document.createElement("script");s.src="vozila.js?"+Date.now();s.onload=res;s.onerror=res;document.head.appendChild(s)});
@@ -247,12 +335,13 @@ async function load(){
     demo=/^https?:$/.test(location.protocol)&&!/^(localhost|127\.)/.test(location.hostname)||new URLSearchParams(location.search).has("demo");
     if(demo){
       let st=null;try{st=JSON.parse(sessionStorage.getItem("cc-demo")||"null")}catch(e){}
-      if(st&&st.items){items=st.items;upiti=st.upiti||[]}
+      if(st&&st.items){items=st.items;upiti=st.upiti||[];finData=st.fin||{};kalData=st.kal||[];window.VOZILA_LIST=items}
       else{const ex=items.filter(v=>v.price&&v.status!=="prodano").slice(0,3);const t=h=>new Date(Date.now()-h*3600e3-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
         upiti=[
           {id:"demo1",vrijeme:t(1),status:"novo",vrsta:"Probna vožnja",ime:"Marko Primjer",telefon:"091 000 0001",email:"",termin:t(-26),poruka:"Primjer upita – ovako izgleda upit s oglasa.",sifra:ex[0]?.sifra,slug:ex[0]?.slug,vozilo:ex[0]?`${ex[0].name} ${ex[0].variant}`:"",cijena:ex[0]?+ex[0].price:null},
           {id:"demo2",vrijeme:t(5),status:"novo",vrsta:"Nazovite me",ime:"Ana Primjer",telefon:"098 000 0002",email:"ana@primjer.hr",termin:"",poruka:"Primjer: molim da me nazovete oko leasinga.",sifra:ex[1]?.sifra,slug:ex[1]?.slug,vozilo:ex[1]?`${ex[1].name} ${ex[1].variant}`:"",cijena:ex[1]?+ex[1].price:null},
           {id:"demo3",vrijeme:t(30),status:"u obradi",vrsta:"Upit",ime:"Ivan Primjer",telefon:"095 000 0003",email:"",termin:"",poruka:"Primjer: je li vozilo još dostupno?",sifra:ex[2]?.sifra,slug:ex[2]?.slug,vozilo:ex[2]?`${ex[2].name} ${ex[2].variant}`:"",cijena:ex[2]?+ex[2].price:null}];
+        window.VOZILA_LIST=items;finData=FIN.demoFin();kalData=FIN.demoKal();
       }
     }
   }
@@ -261,7 +350,7 @@ async function load(){
   const srv=$("#srv");srv.className="srv "+(online?"ok":"err");srv.querySelector("span").textContent=online?"Server spojen – spremanje radi":demo?"Demo način – promjene samo u ovom pregledniku":"Server nije pokrenut";
   if(demo)srv.className="srv ok";
 }
-const demoStore=()=>{try{sessionStorage.setItem("cc-demo",JSON.stringify({items,upiti}))}catch(e){}};
+const demoStore=()=>{try{sessionStorage.setItem("cc-demo",JSON.stringify({items,upiti,fin:finData,kal:kalData}))}catch(e){}};
 async function save(msg){
   if(demo){window.VOZILA_LIST=items;$("#navCount").textContent=items.length;demoStore();toast((msg||"Spremljeno")+" (demo)");return true}
   if(!online){toast("Server nije pokrenut – promjene nisu spremljene.",true);return false}
@@ -290,6 +379,7 @@ function vPregled(){
     <div class="stat"><small>U dolasku</small><b>${cnt("dolazak")}</b></div>
     <div class="stat"><small>Rezervirano</small><b>${cnt("rezervacija")}</b></div>
     <div class="stat"><small>Novi upiti</small><b style="color:var(--brand)">${upiti.filter(u=>u.status==="novo").length}</b></div>
+    <div class="stat"><small>Zarada ovaj mjesec</small><b style="font-size:24px">${(()=>{const m=new Date().toISOString().slice(0,7);let z=0,ok=0;items.forEach(v=>{const c=FIN.calc(v.slug);if(c.sold&&c.f.datumProdaje&&c.f.datumProdaje.slice(0,7)===m&&c.zarada!=null){z+=c.zarada;ok++}});return ok?fmt(Math.round(z))+" €":"—"})()}</b></div>
     <div class="stat"><small>Vrijednost ponude</small><b style="font-size:24px">${fmt(value)} €</b></div>
   </div>
   <div class="two">
@@ -333,7 +423,8 @@ function vOglasi(){
   $("#q").oninput=e=>{query=e.target.value;rows()};
   $("#fchips").onclick=e=>{const b=e.target.closest("button");if(!b)return;filterSt=b.dataset.k;vOglasi()};
   $("#tb").onchange=async e=>{if(e.target.dataset.act!=="st")return;const v=items.find(x=>x.slug===e.target.closest("tr").dataset.s);
-    v.status=e.target.value;e.target.className="ssel s-"+(v.status||"x");await save("Status: "+LBL[v.status])};
+    v.status=e.target.value;e.target.className="ssel s-"+(v.status||"x");await save("Status: "+LBL[v.status]);
+    if(v.status==="prodano")await FIN.soldModal(v)};
   $("#tb").onclick=async e=>{const b=e.target.closest("button[data-act]");if(!b)return;const tr=b.closest("tr");const i=items.findIndex(x=>x.slug===tr.dataset.s);const v=items[i];
     if(b.dataset.act==="top"){items.splice(i,1);items.unshift(v);if(await save("Pomaknuto na vrh"))vOglasi()}
     if(b.dataset.act==="del"&&await confirmBox("Obrisati oglas?",`${v.name} ${v.variant} (šifra ${v.sifra}) bit će uklonjen sa stranice.`)){items.splice(i,1);if(await save("Oglas obrisan"))vOglasi()}};
@@ -421,6 +512,8 @@ function vEditor(slug){
         <div class="tagbox" id="tagbox"><input id="tagIn" placeholder="Upiši opremu i pritisni Enter"></div>
         <div class="sugg" id="sugg"></div>
       </div>
+
+      ${FIN.finPanel(d.slug)}
 
       <div class="panel"><h2>Opis vozila</h2>
         <div class="f"><textarea id="fOpis" placeholder="Opis vozila… Prazan red = novi odlomak.">${esc((d.opis||[]).join("\n\n"))}</textarea></div>
@@ -530,25 +623,29 @@ function vEditor(slug){
     if(!orig){
       out.slug=uniqSlug(slugify(out.title));
       items.unshift(out);
-      if(await save("Oglas objavljen")){location.hash="#uredi/"+encodeURIComponent(out.slug)}else items.shift();
+      if(await save("Oglas objavljen")){await FIN.finPanelCommit(out.slug);location.hash="#uredi/"+encodeURIComponent(out.slug)}else items.shift();
     }else{
       const i=items.indexOf(orig);items[i]=out;
-      if(await save("Promjene spremljene"))vEditor(out.slug);else items[i]=orig;
+      if(await save("Promjene spremljene")){await FIN.finPanelCommit(out.slug);vEditor(out.slug)}else items[i]=orig;
     }
   };
   renderPics();renderTags();refresh();
+  FIN.finPanelBind(()=>$("#fPrice").value,()=>$("#fStatus").value);
 }
 
 /* ---------- router ---------- */
 function route(){
   const h=decodeURIComponent(location.hash.slice(1)||"pregled");
   const [v,...rest]=h.split("/");
-  document.querySelectorAll(".side a.nl").forEach(a=>a.classList.toggle("on",a.dataset.v===v||(v==="uredi"&&a.dataset.v==="oglasi")));
+  document.querySelectorAll(".side a.nl").forEach(a=>a.classList.toggle("on",a.dataset.v===v||(v==="uredi"&&a.dataset.v==="oglasi")||(v==="pregled"&&a.dataset.v==="pregled"&&!location.hash)));
   $("#side").classList.remove("open");
   $("#navCount").textContent=items.length;
   window.scrollTo(0,0);
   if(v==="oglasi")vOglasi();
   else if(v==="upiti")vUpiti();
+  else if(v==="kalendar")FIN.vKalendar();
+  else if(v==="analitika")FIN.vAnalitika();
+  else if(v==="problemi")FIN.vBugovi();
   else if(v==="novi")vEditor(null);
   else if(v==="uredi")vEditor(rest.join("/"));
   else vPregled();

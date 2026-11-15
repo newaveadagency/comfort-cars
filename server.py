@@ -34,13 +34,32 @@ MAX_UPLOAD = 15 * 1024 * 1024
 ALLOWED = {"image/webp": ".webp", "image/jpeg": ".jpg", "image/png": ".png"}
 DATA_DIR = os.path.join(ROOT, "data")
 UPITI = os.path.join(DATA_DIR, "upiti.json")
-BLOCKED = ("/data/", "/backup/", "/server.py", "/build.py", "/.")
+FIN = os.path.join(DATA_DIR, "financije.json")      # nabavne/prodajne cijene – PRIVATNO, nikad se ne objavljuje
+KAL = os.path.join(DATA_DIR, "kalendar.json")       # vlastiti događaji u kalendaru
+
+
+def read_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
+
+
+def write_json(path, obj):
+    os.makedirs(DATA_DIR, exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=1)
+    os.replace(tmp, path)
+BLOCKED = ("/data/", "/backup/", "/server.py", "/build.py", "/bug_agent.py", "/primijeni-bug.sh", "/objavi.sh", "/.")
 _lock = threading.Lock()
 _hits = {}
 
 import sys  # noqa: E402
 sys.path.insert(0, ROOT)
 import build  # noqa: E402  (generira stranice oglasa)
+import bug_agent  # noqa: E402  (automatski popravci prijava)
 
 
 def rebuild():
@@ -153,6 +172,12 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(200, read_list())
         if path == "/api/upiti":
             return self._json(200, read_upiti())
+        if path == "/api/bugovi":
+            return self._json(200, {"agent": bug_agent.enabled(), "lista": read_json(bug_agent.BUGS, [])})
+        if path == "/api/fin":
+            return self._json(200, read_json(FIN, {}))
+        if path == "/api/kalendar":
+            return self._json(200, read_json(KAL, []))
         return super().do_GET()
 
     def send_error(self, code, message=None, explain=None):
@@ -219,6 +244,61 @@ class Handler(SimpleHTTPRequestHandler):
             threading.Thread(target=send_mail, args=(u,), daemon=True).start()
             return self._json(200, {"ok": True})
 
+        if path == "/api/bug":
+            if length > 20000:
+                return self._json(413, {"error": "Prevelik zahtjev"})
+            try:
+                d = json.loads(self.rfile.read(length).decode("utf-8"))
+            except Exception:
+                return self._json(400, {"error": "Neispravan zahtjev"})
+            opis = clip(d.get("opis"), 4000)
+            if len(opis) < 5:
+                return self._json(400, {"error": "Opišite problem"})
+            slika = clip(d.get("slika"), 200)
+            if slika and not re.fullmatch(r"uploads/[\w/.-]+", slika):
+                slika = ""
+            b = {"id": datetime.now().strftime("%m%d-%H%M") + "-" + uuid.uuid4().hex[:4], "vrijeme": datetime.now().isoformat(timespec="minutes"),
+                 "status": "novo" if bug_agent.enabled() else "zaprimljeno", "opis": opis, "stranica": clip(d.get("stranica"), 40),
+                 "url": clip(d.get("url"), 300), "hitnost": clip(d.get("hitnost"), 20), "slika": slika, "agent": ""}
+            with bug_agent.lock:
+                lst = read_json(bug_agent.BUGS, [])
+                lst.insert(0, b)
+                write_json(bug_agent.BUGS, lst)
+            bug_agent.wake()
+            return self._json(200, {"ok": True, "id": b["id"], "agent": bug_agent.enabled()})
+
+        if path == "/api/bugovi":
+            try:
+                d = json.loads(self.rfile.read(length).decode("utf-8"))
+            except Exception:
+                return self._json(400, {"error": "Neispravan zahtjev"})
+            with bug_agent.lock:
+                lst = read_json(bug_agent.BUGS, [])
+                if d.get("akcija") == "obrisi":
+                    lst = [b for b in lst if b["id"] != d.get("id") or b.get("status") == "u obradi"]
+                elif d.get("akcija") == "ponovi":
+                    for b in lst:
+                        if b["id"] == d.get("id") and b.get("status") in ("greška", "bez izmjena", "zaprimljeno", "riješeno"):
+                            b["status"] = "novo"; b["agent"] = ""
+                write_json(bug_agent.BUGS, lst)
+            bug_agent.wake()
+            return self._json(200, {"ok": True})
+
+        if path in ("/api/fin", "/api/kalendar"):
+            if length > 5 * 1024 * 1024:
+                return self._json(413, {"error": "Prevelik zahtjev"})
+            try:
+                d = json.loads(self.rfile.read(length).decode("utf-8"))
+            except Exception:
+                return self._json(400, {"error": "Neispravan JSON"})
+            if path == "/api/fin" and not isinstance(d, dict):
+                return self._json(400, {"error": "Očekivan objekt"})
+            if path == "/api/kalendar" and not isinstance(d, list):
+                return self._json(400, {"error": "Očekivan popis"})
+            with _lock:
+                write_json(FIN if path == "/api/fin" else KAL, d)
+            return self._json(200, {"ok": True})
+
         if path == "/api/upiti":
             try:
                 d = json.loads(self.rfile.read(length).decode("utf-8"))
@@ -255,5 +335,6 @@ class Handler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(ROOT)
     rebuild()
+    print("  bug agent:", "UKLJUČEN (Claude Code obrađuje prijave)" if bug_agent.start() else "isključen (pokreni s BUG_AGENT=1)")
     print(f"Comfort Cars: http://localhost:{PORT}/   ·   Dashboard: http://localhost:{PORT}/admin.html")
     ThreadingHTTPServer((HOST, PORT), Handler).serve_forever()

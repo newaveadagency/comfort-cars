@@ -15,7 +15,7 @@ TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
 # samo javne datoteke – bez dashboarda, servera, upita i sigurnosnih kopija
-for f in index.html ponuda.html vozilo.html admin.html 404.html style.css cards.js vozila.js vozila-lista.js sitemap.xml robots.txt vozilo uploads fonts; do
+for f in index.html ponuda.html vozilo.html admin.html admin-fin.js 404.html style.css cards.js vozila.js vozila-lista.js sitemap.xml robots.txt vozilo uploads fonts; do
   [ -e "$f" ] && cp -R "$f" "$TMP/"
 done
 touch "$TMP/.nojekyll"
