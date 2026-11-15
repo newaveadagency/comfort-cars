@@ -19,6 +19,9 @@ for f in index.html ponuda.html vozilo.html admin.html admin-fin.js 404.html sty
   [ -e "$f" ] && cp -R "$f" "$TMP/"
 done
 touch "$TMP/.nojekyll"
+# nova oznaka verzije skripti → preglednici uvijek učitaju najnoviju verziju
+V="$(date +%s)"
+for f in "$TMP"/admin.html; do sed -i '' -E "s/\?v=[0-9]+/?v=$V/g" "$f"; done
 
 if [ "$PREVIEW" = "1" ]; then
   for f in index.html ponuda.html vozilo.html; do
