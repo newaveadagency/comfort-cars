@@ -374,8 +374,10 @@ if(!c){
           <div id="tab-leasing">
             <h3 style="font-size:17px;font-weight:700;margin-bottom:16px">Izračun financijskog leasinga</h3>
             <div class="cf"><label for="vrijednost">Vrijednost s PDV-om (€)</label><input type="number" id="vrijednost" value="${price}" min="0" step="100"></div>
-            <div class="cf"><label>Vaše učešće % <b id="ucLbl"></b></label><div class="seg" id="ucesce"></div></div>
-            <div class="cf" style="margin-bottom:0"><label>Trajanje otplate <b id="trLbl"></b></label><div class="seg" id="trajanje"></div></div>
+            <div class="cpair">
+              <div class="cf"><label for="ucesceSel">Vaše učešće <b id="ucLbl"></b></label><div class="seg" id="ucesce"></div></div>
+              <div class="cf"><label for="trajanjeSel">Trajanje otplate <b id="trLbl"></b></label><div class="seg" id="trajanje"></div></div>
+            </div>
           </div>
           <div id="tab-gotovina" hidden>
             <div class="cash">
@@ -417,7 +419,7 @@ if(!c){
             <div class="f w2"><label for="iPor">Poruka</label><textarea id="iPor" name="poruka" rows="4">Pozdrav, zanima me vozilo ${esc(c.name)} ${esc(c.variant)} (šifra ${esc(c.sifra)}).</textarea></div>
           </div>
           <input type="text" name="web" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
-          <label class="gdpr"><input type="checkbox" name="privola" required> Slažem se da Comfort Cars koristi moje podatke kako bi odgovorio na upit. <a href="https://comfortcars.hr/privacy-statement-eu/" target="_blank" rel="noopener">Izjava o privatnosti</a></label>
+          <label class="gdpr"><input type="checkbox" name="privola" required><span>Slažem se da Comfort Cars koristi moje podatke kako bi odgovorio na upit. <a href="https://comfortcars.hr/privacy-statement-eu/" target="_blank" rel="noopener">Izjava o privatnosti</a></span></label>
           <button class="btn btn-brand" type="submit" id="iSend">Pošalji upit</button>
           <p class="inq-msg" id="iMsg" aria-live="polite"></p>
         </form>
@@ -540,10 +542,11 @@ if(!c){
     const UC=[10,15,20,25,30,35,40,50];
     const TR=[[12,"1 godina"],[24,"2 godine"],[36,"3 godine"],[48,"4 godine"],[60,"5 godina"],[72,"6 godina"],[84,"7 godina"]];
     let uc=10,trm=84;
-    const seg=(id,items,cv,cb)=>{$(id).innerHTML=items.map(([v,l])=>`<button type="button" data-v="${v}" class="${v===cv?"on":""}">${l}</button>`).join("");
-      $(id).querySelectorAll("button").forEach(b=>b.onclick=()=>{cb(+b.dataset.v);$(id).querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));calc()})};
-    seg("ucesce",UC.map(v=>[v,v+"%"]),uc,v=>uc=v);
-    seg("trajanje",TR.map(([v])=>[v,v/12+" g"]),trm,v=>trm=v);
+    const seg=(id,items,cv,cb)=>{const el=$(id);el.className="cselw";
+      el.innerHTML=`<div class="csel"><select id="${id}Sel">${items.map(([v,l])=>`<option value="${v}" ${v===cv?"selected":""}>${l}</option>`).join("")}</select></div>`;
+      el.querySelector("select").onchange=e=>{cb(+e.target.value);calc()}};
+    seg("ucesce",UC.map(v=>[v,v+" %"]),uc,v=>uc=v);
+    seg("trajanje",TR,trm,v=>trm=v);
     function calc(){
       const p=parseFloat($("vrijednost").value)||0,r=0.0599/12,n=trm,pv=p-p*(uc/100);
       const pmt=pv*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);

@@ -49,6 +49,13 @@
 .brands a.on small,.brands a:hover small{color:#a3a6ac}
 .empty{grid-column:1/-1;background:var(--stone);border-radius:var(--r-lg);padding:56px 24px;text-align:center;color:var(--muted)}
 .empty a{color:var(--brand);font-weight:600}
+.morebtn{display:none}
+@media(max-width:700px){
+  .panel .adv{display:none}
+  .panel.open .adv{display:block}
+  .panel.open .soldtog.adv{display:flex}
+  .morebtn{display:block;grid-column:1/-1;height:44px;border:0;border-radius:var(--r-sm);background:rgba(255,255,255,.08);color:#fff;font-weight:600;font-size:14px;cursor:pointer}
+}
 @media(max-width:860px){.panel .filter{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <link rel="canonical" href="https://comfortcars.hr/ponuda.html">
@@ -99,17 +106,18 @@
         <form class="filter" id="car-filter" action="ponuda.html" method="get">
           <div class="sel"><select name="marka" aria-label="Marka vozila"><option value="">Marka vozila</option></select></div>
           <div class="sel"><select name="model" aria-label="Model vozila" disabled><option value="">Model vozila</option></select></div>
-          <div class="sel"><select name="cijena_od" aria-label="Cijena od"><option value="">Cijena od</option></select></div>
+          <div class="sel adv"><select name="cijena_od" aria-label="Cijena od"><option value="">Cijena od</option></select></div>
           <div class="sel"><select name="cijena_do" aria-label="Cijena do"><option value="">Cijena do</option></select></div>
-          <div class="sel"><select name="godina_od" aria-label="Godina od"><option value="">Godina od</option></select></div>
-          <div class="sel"><select name="godina_do" aria-label="Godina do"><option value="">Godina do</option></select></div>
-          <div class="sel"><select name="mjenjac" aria-label="Mjenjač"><option value="">Mjenjač</option><option value="Manualni">Manualni</option><option value="Automatski">Automatski</option></select></div>
-          <div class="sel"><select name="vrsta_motora" aria-label="Vrsta motora"><option value="">Vrsta motora</option><option value="Benzin">Benzin</option><option value="Diesel">Diesel</option><option value="Hibrid">Hibrid</option><option value="Električni">Električni</option></select></div>
+          <div class="sel adv"><select name="godina_od" aria-label="Godina od"><option value="">Godina od</option></select></div>
+          <div class="sel adv"><select name="godina_do" aria-label="Godina do"><option value="">Godina do</option></select></div>
+          <div class="sel adv"><select name="mjenjac" aria-label="Mjenjač"><option value="">Mjenjač</option><option value="Manualni">Manualni</option><option value="Automatski">Automatski</option></select></div>
+          <div class="sel adv"><select name="vrsta_motora" aria-label="Vrsta motora"><option value="">Vrsta motora</option><option value="Benzin">Benzin</option><option value="Diesel">Diesel</option><option value="Hibrid">Hibrid</option><option value="Električni">Električni</option></select></div>
           <div class="sel"><select name="karoserija" aria-label="Karoserija"><option value="">Karoserija</option></select></div>
-          <div class="sel"><select name="km_do" aria-label="Kilometraža"><option value="">Kilometraža</option></select></div>
+          <div class="sel adv"><select name="km_do" aria-label="Kilometraža"><option value="">Kilometraža</option></select></div>
           <input type="hidden" name="sort" id="sortIn">
-          <label class="soldtog"><input type="checkbox" name="prodano" value="1" id="soldIn"> Prikaži i prodana vozila</label>
+          <label class="soldtog adv"><input type="checkbox" name="prodano" value="1" id="soldIn"> Prikaži i prodana vozila</label>
           <input type="hidden" name="status" id="statusIn">
+          <button type="button" class="morebtn" id="moreBtn">Više filtera</button>
           <div class="row2">
             <button class="btn btn-brand" type="submit"><svg class="i"><use href="#search"/></svg>Pretraži</button>
             <a class="reset" href="ponuda.html">Poništi</a>
@@ -203,6 +211,11 @@ const svi=CC.all().filter(c=>!CC.isSold(c)),bc={},kc={};svi.forEach(c=>{bc[c.bra
 $("brands").innerHTML=Object.keys(bc).sort((a,b)=>a.localeCompare(b,"hr")).map(b=>`<a href="ponuda.html?marka=${encodeURIComponent(b)}" class="${P.get("marka")===b?"on":""}">${b}<small>${bc[b]}</small></a>`).join("");
 $("bodies").innerHTML=Object.keys(kc).sort((a,b)=>kc[b]-kc[a]).map(k=>`<a href="ponuda.html?karoserija=${encodeURIComponent(k)}" class="${P.get("karoserija")===k?"on":""}">${k}<small>${kc[k]}</small></a>`).join("");
 $("soldIn").checked=P.get("prodano")==="1";
+/* mobitel: dodatni filteri iza gumba; otvoreno ako je neki već odabran */
+const panel=document.querySelector(".panel");
+if(["cijena_od","godina_od","godina_do","mjenjac","vrsta_motora","km_do","prodano"].some(k=>P.get(k)))panel.classList.add("open");
+const setMore=()=>$("moreBtn").textContent=panel.classList.contains("open")?"Manje filtera":"Više filtera";setMore();
+$("moreBtn").onclick=()=>{panel.classList.toggle("open");setMore()};
 $("grid").innerHTML=n?L.map(CC.card).join(""):'<div class="empty">Vozilo nije pronađeno.<br><a href="ponuda.html">Prikaži sva vozila</a> · <a href="ponuda.html?prodano=1">uključi i prodana</a></div>';
 const CH=[["ponuda.html","Sva vozila",!P.toString()],
  ["ponuda.html?status=akcija","vozila na akciji",P.get("status")==="akcija"],
