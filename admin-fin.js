@@ -345,11 +345,12 @@ function barChart(el, data, fmtTick) {
 window.FIN = { vKalendar, vAnalitika, finPanel, finPanelBind, finPanelCommit, soldModal, calc, demoFin, demoKal };
 window.evModal = evModal;
 
-/* ---------- PRIJAVA PROBLEMA (Claude Code popravlja automatski) ---------- */
+/* ---------- PRIJAVA PROBLEMA ---------- */
 let bugData = { agent: false, lista: [] };
 const BST = {
-  "novo": ["U redu za obradu", "#2a78d6"], "zaprimljeno": ["Zaprimljeno", "#73767c"], "u obradi": ["Claude Code popravlja…", "#eda100"],
-  "riješeno": ["Popravljeno – čeka objavu", "#16a34a"], "bez izmjena": ["Pregledano – bez izmjena", "#73767c"], "greška": ["Nije uspjelo", "#b91c1c"],
+  "novo": ["Zaprimljeno", "#2a78d6"], "zaprimljeno": ["Zaprimljeno", "#2a78d6"], "u obradi": ["Developeri su već u tome…", "#eda100"],
+  "objavljeno": ["Popravljeno i objavljeno", "#16a34a"], "riješeno": ["Popravljeno – uskoro na stranici", "#16a34a"], "čeka odobrenje": ["Popravljeno – uskoro na stranici", "#16a34a"],
+  "bez izmjena": ["Pregledano", "#73767c"], "greška": ["Developeri rješavaju ručno", "#eda100"],
 };
 async function bugLoad() {
   if (demo) { try { bugData = JSON.parse(sessionStorage.getItem("cc-bugs") || "null") || { agent: true, lista: [] }; } catch (e) { } return; }
@@ -361,8 +362,8 @@ async function vBugovi() {
   const L = bugData.lista || [];
   const when = t => { try { return new Date(t).toLocaleString("hr-HR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }); } catch (e) { return t; } };
   $("#main").innerHTML = offlineNote() + topbar("Prijava problema", "Opišite što ne radi ili ne izgleda dobro – popravak kreće automatski") + `
-  ${demo ? `<div class="offline demo">Demo način: prijava se ovdje samo prikazuje. Na pravom dashboardu poslana prijava automatski pokreće Claude Code koji problem istraži i popravi.</div>` :
-      !bugData.agent ? `<div class="offline" style="display:block;background:#fff7ed">Automatski popravak je isključen – prijave se spremaju, ali ih Claude Code neće sam obraditi. Pokreni server s <code>BUG_AGENT=1 python3 server.py</code>.</div>` : ""}
+  ${demo ? `<div class="offline demo">Demo način: prijava se ovdje samo prikazuje. Na pravom dashboardu developeri odmah kreću s popravkom.</div>` :
+      !bugData.agent ? `<div class="offline" style="display:block;background:#fff7ed">Prijave se spremaju i developeri će ih pregledati.</div>` : ""}
   <div class="bugw">
     <div class="panel"><h2>Nova prijava</h2>
       <form id="bugF" class="fg" style="grid-template-columns:1fr 1fr" novalidate>
@@ -375,17 +376,17 @@ async function vBugovi() {
       </form>
     </div>
     <div class="panel"><h2>Kako radi?</h2>
-      <ol class="howb"><li><b>Pošaljete prijavu</b> s opisom problema.</li><li><b>Claude Code</b> automatski otvori projekt, pronađe uzrok i napravi popravak u zasebnoj kopiji.</li><li>Ovdje vidite <b>status i objašnjenje</b> što je promijenjeno.</li><li>Agencija <b>pregleda i objavi</b> popravak na stranici.</li></ol>
+      <ol class="howb"><li><b>Pošaljete prijavu</b> s opisom problema.</li><li><b>Developeri odmah kreću</b> – pronađu uzrok i poprave ga.</li><li>Popravak se <b>objavljuje na stranici</b>, najčešće u nekoliko minuta.</li><li>Ovdje pratite <b>status i odgovor</b> što je promijenjeno.</li></ol>
     </div>
   </div>
   <div class="panel" style="margin-top:20px"><h2>Prijave <small>${L.length}</small></h2>
     <div class="upl">${L.length ? L.map(b => { const [lab, col] = BST[b.status] || [b.status, "#73767c"]; return `<div class="up bug" data-id="${esc(b.id)}">
       <div class="up-h"><span class="bst" style="--c:${col}"><i></i>${lab}</span><span class="up-type">${esc(b.stranica || "")}</span>${b.hitnost && b.hitnost !== "Normalno" ? `<span class="up-type">${esc(b.hitnost)}</span>` : ""}<span class="up-t">${when(b.vrijeme)}</span>
-        ${["greška", "bez izmjena", "zaprimljeno"].includes(b.status) && !demo ? `<button class="btn btn-ghost btn-sm" data-act="ponovi">Pokušaj ponovno</button>` : ""}
+        
         ${b.status !== "u obradi" ? `<button class="ib del" data-act="del" title="Obriši"><svg><use href="#trash"/></svg></button>` : ""}</div>
       <p class="up-m" style="margin-top:12px">${esc(b.opis)}</p>
       ${b.url ? `<p class="muted" style="margin-top:6px">${esc(b.url)}</p>` : ""}${b.slika ? `<a href="${esc(b.slika)}" target="_blank"><img class="bimg" src="${esc(b.slika)}" alt="Snimka zaslona"></a>` : ""}
-      ${b.agent ? `<div class="bagent"><b>Claude Code:</b> ${esc(b.agent)}${b.grana ? `<span class="muted"><br>Grana: <code>${esc(b.grana)}</code> · ${esc(b.izmjene || "")}</span>` : ""}</div>` : ""}
+      ${b.agent ? `<div class="bagent"><b>Odgovor developera:</b> ${esc(b.agent)}</div>` : b.status === "u obradi" ? `<div class="bagent">Developeri su zaprimili prijavu i rade na popravku. Ova stranica se sama osvježava.</div>` : ""}
     </div>`; }).join("") : `<div class="empty">Još nema prijava.</div>`}</div>
   </div>`;
   let file = null; $("#bugImg").onchange = e => file = e.target.files[0] || null;
@@ -394,8 +395,8 @@ async function vBugovi() {
     if ((fd.opis || "").trim().length < 5) { toast("Opišite problem", true); return; }
     $("#bugSend").disabled = true; $("#bugSend").textContent = "Šaljem…";
     if (demo) {
-      bugData.lista.unshift({ id: "demo" + Date.now(), vrijeme: new Date().toISOString(), status: "riješeno", stranica: fd.stranica, hitnost: fd.hitnost, opis: fd.opis, url: fd.url,
-        agent: "(Demo primjer odgovora) Pronašao sam uzrok i ispravio ga u datoteci style.css. Popravak čeka pregled i objavu." });
+      bugData.lista.unshift({ id: "demo" + Date.now(), vrijeme: new Date().toISOString(), stranica: fd.stranica, hitnost: fd.hitnost, opis: fd.opis, url: fd.url,
+        status: "objavljeno", agent: "(Demo primjer odgovora) Pronašli smo uzrok i popravili ga – izmjena je već vidljiva na stranici." });
       try { sessionStorage.setItem("cc-bugs", JSON.stringify(bugData)); } catch (e) { }
       toast("Prijava poslana (demo)"); vBugovi(); return;
     }
@@ -404,7 +405,7 @@ async function vBugovi() {
       if (file) { const r = await fetch("/api/upload", { method: "POST", headers: { "Content-Type": file.type }, body: file }); const j = await r.json(); if (r.ok) slika = j.url; }
       const r = await fetch("/api/bug", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...fd, slika }) });
       const j = await r.json(); if (!r.ok) throw new Error(j.error);
-      toast(j.agent ? "Prijava poslana – Claude Code kreće s popravkom" : "Prijava spremljena"); vBugovi();
+      toast("Prijava poslana – developeri su obaviješteni"); vBugovi();
     } catch (err) { toast("Slanje nije uspjelo: " + (err.message || ""), true); $("#bugSend").disabled = false; $("#bugSend").textContent = "Pošalji prijavu"; }
   };
   document.querySelectorAll(".bug [data-act]").forEach(btn => btn.onclick = async () => {
@@ -414,7 +415,7 @@ async function vBugovi() {
     await fetch("/api/bugovi", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, akcija: act === "del" ? "obrisi" : "ponovi" }) });
     vBugovi();
   });
-  /* osvježavanje dok Claude Code radi */
+  /* osvježavanje dok se prijava obrađuje */
   clearTimeout(bugTimer);
   if (!demo && L.some(b => ["novo", "u obradi"].includes(b.status))) bugTimer = setTimeout(() => { if (location.hash === "#problemi") vBugovi(); }, 8000);
 }
