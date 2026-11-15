@@ -15,7 +15,7 @@ TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
 # samo javne datoteke – bez dashboarda, servera, upita i sigurnosnih kopija
-for f in index.html ponuda.html vozilo.html 404.html style.css cards.js vozila.js vozila-lista.js sitemap.xml robots.txt vozilo uploads; do
+for f in index.html ponuda.html vozilo.html admin.html 404.html style.css cards.js vozila.js vozila-lista.js sitemap.xml robots.txt vozilo uploads fonts; do
   [ -e "$f" ] && cp -R "$f" "$TMP/"
 done
 touch "$TMP/.nojekyll"
@@ -23,6 +23,16 @@ touch "$TMP/.nojekyll"
 if [ "$PREVIEW" = "1" ]; then
   for f in index.html ponuda.html vozilo.html; do
     sed -i '' 's#<meta charset="utf-8">#<meta charset="utf-8">\n<meta name="robots" content="noindex">#' "$TMP/$f"
+  done
+  # gumb za demo admin panel (samo u probnoj objavi)
+  BTN='<a href="admin.html" class="demo-admin" style="position:fixed;left:16px;bottom:16px;z-index:90;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:999px;background:#121314;color:#fff;font:600 14px Onest,system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.15)"><span style="width:8px;height:8px;border-radius:50%;background:#ff4713"></span>Admin panel (demo)</a>'
+  for f in index.html ponuda.html; do
+    python3 - "$TMP/$f" "$BTN" <<'PY'
+import sys
+p, btn = sys.argv[1], sys.argv[2]
+s = open(p, encoding="utf-8").read()
+open(p, "w", encoding="utf-8").write(s.replace("</body>", btn + "\n</body>", 1))
+PY
   done
 fi
 
