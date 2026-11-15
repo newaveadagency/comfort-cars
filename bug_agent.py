@@ -41,8 +41,10 @@ Pravila:
 - NE mijenjaj server.py, bug_agent.py, objavi.sh, .gitignore ni ništa u data/ i backup/. Ne objavljuj ništa i ne pokreći git commit/push.
 - Napravi najmanju izmjenu koja rješava problem i drži postojeći dizajn. Ako mijenjaš vozilo.html ili cards.js, pokreni `python3 build.py`.
 - Ako problem nije moguće reproducirati ili nije stvar koda (npr. sadržaj oglasa, želja za novom funkcijom), ne mijenjaj ništa i to objasni.
-- Na kraju napiši kratak sažetak NA HRVATSKOM (2-4 rečenice) za vlasnika autokuće, u ime tima developera (u množini: "pronašli smo", "popravili smo").
-  Bez tehničkih detalja i naziva datoteka, bez spominjanja umjetne inteligencije ili alata. Objasni jednostavno što je bio problem i što je sada drukčije.
+- Na kraju napiši poruku za vlasnika autokuće NA HRVATSKOM (2-4 rečenice) unutar oznaka <za_vlasnika> … </za_vlasnika>,
+  u ime tima developera (u množini: "pronašli smo", "popravili smo"). Bez tehničkih detalja i naziva datoteka, bez spominjanja
+  umjetne inteligencije ili alata. Ako si nešto popravio, reci što je sada drukčije. Ako zahtjev traži ručni rad (hosting, domena,
+  novi sadržaj, veća promjena), napiši da su developeri zaprimili zahtjev i da će se javiti – i u tom slučaju stavi RIZIK: visok.
 - U ZADNJEM retku napiši točno jedno od:
   RIZIK: nizak
   RIZIK: visok – <kratak razlog>
@@ -65,6 +67,18 @@ DATA_FILES = ["vozila.js", "vozila-lista.js", "sitemap.xml", "robots.txt", "uplo
 MAX_LINES = 400
 DANGER = [r"<script[^>]*src=[\"']https?://(?!cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)", r"\beval\(", r"document\.cookie",
           r"localStorage\.clear", r"\.innerHTML\s*=\s*location", r"<meta[^>]+http-equiv=[\"']refresh", r"window\.location\s*=\s*[\"']https?://"]
+
+
+def owner_msg(summary):
+    import re as _re
+    m = _re.search(r"<za_vlasnika>(.*?)</za_vlasnika>", summary, _re.S)
+    txt = m.group(1) if m else "\n".join(l for l in summary.splitlines() if not l.strip().upper().startswith("RIZIK:"))
+    return txt.strip().strip("*").strip()
+
+
+def high_risk(summary):
+    last = [l for l in summary.strip().splitlines() if l.strip().upper().startswith("RIZIK:")]
+    return bool(last) and not last[-1].strip().upper().startswith("RIZIK: NIZAK")
 
 
 def risk_check(wt, summary):
@@ -137,7 +151,6 @@ def publish(branch):
         except Exception as ex:
             return False, f"objava nije uspjela ({ex})"
         _git("push", "-q", check=False)
-        _git("branch", "-d", branch, check=False)
         return True, ""
 
 
@@ -212,13 +225,12 @@ def process(b):
         if changed:
             _git("-c", "user.name=Claude Code (bug agent)", "-c", "user.email=noreply@anthropic.com",
                  "commit", "-q", "-m", f"Popravak prijave {bid}: {b.get('opis', '')[:60]}\n\n{summary[:1500]}\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", cwd=wt)
-            clean = "\n".join(l for l in summary.splitlines() if not l.strip().upper().startswith("RIZIK:")).strip()
+            clean = owner_msg(summary)
             safe, why = risk_check(wt, summary)
             if safe:
                 subprocess.run(["python3", "build.py"], cwd=wt, capture_output=True, timeout=600)
                 ok, why = smoke_test(wt)
                 if not ok:
-                    _git("branch", "-D", branch, check=False)
                     update(bid, status="greška", agent="Popravak nije prošao automatsku provjeru, pa nije objavljen. Developeri će ga pogledati ručno.", interno=why)
                     return
                 ok, why = publish(branch)
@@ -228,16 +240,18 @@ def process(b):
             update(bid, status="čeka odobrenje", agent=clean, grana=branch, izmjene=changed.splitlines()[-1].strip(), interno=why,
                    rijeseno=datetime.now().isoformat(timespec="minutes"))
         else:
-            clean = "\n".join(l for l in summary.splitlines() if not l.strip().upper().startswith("RIZIK:")).strip()
-            update(bid, status="bez izmjena", agent=clean or "Pregledali smo prijavu i nismo pronašli potrebnu izmjenu.",
-                   rijeseno=datetime.now().isoformat(timespec="minutes"))
-            _git("branch", "-D", branch, check=False)
+            clean = owner_msg(summary)
+            update(bid, status="čeka odobrenje" if high_risk(summary) else "bez izmjena", interno="zahtjev za ručni rad" if high_risk(summary) else "",
+                   agent=clean or "Pregledali smo prijavu i nismo pronašli potrebnu izmjenu.", rijeseno=datetime.now().isoformat(timespec="minutes"))
     except subprocess.TimeoutExpired:
         update(bid, status="greška", agent="Popravak traje dulje od očekivanog – developeri će ga dovršiti ručno.", interno="timeout")
     except Exception as ex:
         update(bid, status="greška", agent="Developeri će ovu prijavu riješiti ručno.", interno=str(ex)[:500])
     finally:
         _git("worktree", "remove", "--force", wt, check=False)
+        cur = next((x for x in _read() if x["id"] == bid), {})
+        if not (cur.get("status") == "čeka odobrenje" and cur.get("grana")):
+            _git("branch", "-D", branch, check=False)
 
 
 def _loop():

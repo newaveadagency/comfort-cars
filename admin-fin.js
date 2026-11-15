@@ -349,7 +349,7 @@ window.evModal = evModal;
 let bugData = { agent: false, lista: [] };
 const BST = {
   "novo": ["Zaprimljeno", "#2a78d6"], "zaprimljeno": ["Zaprimljeno", "#2a78d6"], "u obradi": ["Developeri su već u tome…", "#eda100"],
-  "objavljeno": ["Popravljeno i objavljeno", "#16a34a"], "riješeno": ["Popravljeno – uskoro na stranici", "#16a34a"], "čeka odobrenje": ["Popravljeno – uskoro na stranici", "#16a34a"],
+  "objavljeno": ["Popravljeno i objavljeno", "#16a34a"], "riješeno": ["Popravljeno – uskoro na stranici", "#16a34a"], "čeka odobrenje": ["Developeri pregledavaju", "#2a78d6"],
   "bez izmjena": ["Pregledano", "#73767c"], "greška": ["Developeri rješavaju ručno", "#eda100"],
 };
 async function bugLoad() {
