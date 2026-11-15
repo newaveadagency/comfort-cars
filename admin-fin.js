@@ -353,7 +353,7 @@ const BST = {
   "bez izmjena": ["Pregledano", "#73767c"], "greška": ["Developeri rješavaju ručno", "#eda100"],
 };
 async function bugLoad() {
-  if (demo) { try { bugData = JSON.parse(sessionStorage.getItem("cc-bugs") || "null") || { agent: true, lista: [] }; } catch (e) { } return; }
+  if (demo) { try { bugData = JSON.parse(sessionStorage.getItem("cc-bugs2") || "null") || { agent: true, lista: [] }; } catch (e) { } return; }
   try { bugData = await (await fetch("/api/bugovi", { cache: "no-store" })).json(); } catch (e) { bugData = { agent: false, lista: [] }; }
 }
 let bugTimer = null;
@@ -397,7 +397,7 @@ async function vBugovi() {
     if (demo) {
       bugData.lista.unshift({ id: "demo" + Date.now(), vrijeme: new Date().toISOString(), stranica: fd.stranica, hitnost: fd.hitnost, opis: fd.opis, url: fd.url,
         status: "objavljeno", agent: "(Demo primjer odgovora) Pronašli smo uzrok i popravili ga – izmjena je već vidljiva na stranici." });
-      try { sessionStorage.setItem("cc-bugs", JSON.stringify(bugData)); } catch (e) { }
+      try { sessionStorage.setItem("cc-bugs2", JSON.stringify(bugData)); } catch (e) { }
       toast("Prijava poslana (demo)"); vBugovi(); return;
     }
     try {
@@ -411,7 +411,7 @@ async function vBugovi() {
   document.querySelectorAll(".bug [data-act]").forEach(btn => btn.onclick = async () => {
     const id = btn.closest(".bug").dataset.id, act = btn.dataset.act;
     if (act === "del" && !await confirmBox("Obrisati prijavu?", "Prijava će biti uklonjena s popisa.")) return;
-    if (demo) { bugData.lista = bugData.lista.filter(b => b.id !== id); try { sessionStorage.setItem("cc-bugs", JSON.stringify(bugData)); } catch (e) { } vBugovi(); return; }
+    if (demo) { bugData.lista = bugData.lista.filter(b => b.id !== id); try { sessionStorage.setItem("cc-bugs2", JSON.stringify(bugData)); } catch (e) { } vBugovi(); return; }
     await fetch("/api/bugovi", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, akcija: act === "del" ? "obrisi" : "ponovi" }) });
     vBugovi();
   });
