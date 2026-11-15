@@ -20,7 +20,7 @@
   const img = (c, sizes, eager) => {
     const i = (c.images || [])[0] || {};
     const set = [i.s300 && i.s300 + " 300w", i.s768 && i.s768 + " 768w", i.mid && i.mid + " 1024w"].filter(Boolean);
-    return `<img ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" src="${i.s768 || i.mid || ""}"${set.length > 1 ? ` srcset="${set.join(", ")}" sizes="${sizes}"` : ""} alt="${esc(c.name)} ${esc(c.variant)}" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='${i.mid || ""}'">`;
+    return `<img ${eager ? 'loading="eager"' : 'loading="lazy"'} decoding="async" src="${i.s768 || i.mid || ""}"${set.length > 1 ? ` srcset="${set.join(", ")}" sizes="${sizes}"` : ""} alt="${esc(c.name)} ${esc(c.variant)}" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='${i.mid || ""}'">`;
   };
   const CARD_SIZES = "(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px";
   const model = c => c.name.slice(c.brand.length).trim() || c.name;

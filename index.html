@@ -6,9 +6,9 @@
 <title>Comfort Cars – Prodaja provjerenih rabljenih vozila u Splitu</title>
 <meta name="description" content="Rabljena vozila Split s jamstvom i financiranjem. Provjerena rabljena vozila iz zapadne Europe, jamstvo 12 do 24 mjeseca, leasing i kreditni partneri.">
 <link rel="icon" href="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/favicon-32x32-1.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://comfort-cars.b-cdn.net">
+<link rel="preload" href="fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/07/bcg-naslovnica-copy.webp" fetchpriority="high">
 <link rel="stylesheet" href="style.css">
 <link rel="canonical" href="https://comfortcars.hr/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Comfort Cars"><meta property="og:locale" content="hr_HR">
@@ -17,6 +17,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AutoDealer", "@id": "https://comfortcars.hr/#dealer", "name": "Comfort Cars", "legalName": "SEA MOOD d.o.o.", "url": "https://comfortcars.hr/", "logo": "https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo.svg", "telephone": "+385911100031", "email": "info@comfortcars.eu", "address": {"@type": "PostalAddress", "streetAddress": "Put Krtina", "postalCode": "21212", "addressLocality": "Kaštel Sućurac", "addressCountry": "HR"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00"}], "sameAs": ["https://www.instagram.com/comfortcarscroatia/", "https://www.facebook.com/comfortcarsSplit"]}</script>
 </head>
 <body>
+<div id="intro" aria-hidden="true"><div class="in"><img src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo-inv-1.svg" alt="" width="320" height="40"><div class="bar"><i></i></div><small>Prodaja provjerenih rabljenih vozila u Splitu</small></div></div>
+<script>(function(){var el=document.getElementById("intro"),d=document.documentElement;try{if(sessionStorage.getItem("cc-intro")||matchMedia("(prefers-reduced-motion: reduce)").matches){el.remove();return}sessionStorage.setItem("cc-intro","1")}catch(e){}d.style.overflow="hidden";setTimeout(function(){el.classList.add("out");d.style.overflow="";setTimeout(function(){el.remove()},900)},1650)})();</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -236,7 +238,10 @@
       </div>
     </div>
     <div class="fmap">
-      <iframe title="Lokacija Comfort Cars" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Comfort+Cars,+Put+Krtina,+21212+Ka%C5%A1tel+Su%C4%87urac&amp;output=embed"></iframe>
+      <div class="fmap-map">
+        <iframe title="Lokacija Comfort Cars" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Comfort+Cars,+Put+Krtina,+21212+Ka%C5%A1tel+Su%C4%87urac&amp;output=embed"></iframe>
+        <span class="fmap-pin" aria-hidden="true"></span>
+      </div>
       <div class="fmap-info"><h4>Lokacija trgovine</h4><p>Put Krtina, 21212 Kaštel Sućurac, Hrvatska</p><p>Pon - Pet 09:00 - 18:00 · Subota 09:00 - 14:00</p>
         <a class="btn btn-brand" href="https://www.google.com/maps/dir/?api=1&amp;destination=Comfort+Cars+Put+Krtina+21212+Ka%C5%A1tel+Su%C4%87urac" target="_blank" rel="noopener">Upute do salona</a></div>
     </div>
@@ -254,12 +259,12 @@ const $=id=>document.getElementById(id);
 const fmt=CC.fmt;
 const svi=CC.all();
 /* Nova vozila u ponudi – prvih 12 kao na naslovnici comfortcars.hr */
-$("grid").innerHTML=CC.available().slice(0,12).map(CC.card).join("");
+$("grid").innerHTML=CC.available().slice(0,12).map(c=>CC.card(c)).join("");
 $("deals").innerHTML=svi.filter(c=>c.status==="akcija").map(CC.dealCard).join("");
 CC.setupForm($("car-filter"));
 /* istaknuto vozilo – prvo dostupno iz "Nova vozila u ponudi" */
 const f=svi.find(c=>c.price&&c.status!=="prodano"&&c.status!=="rezervacija")||svi[0];
-if(f){$("feat").href=CC.url(f);$("feat").innerHTML=`<img src="${f.images[0]?.mid||""}" alt="${CC.esc(f.name)}"><div class="fb"><div><small>Nova vozila u ponudi</small><b>${CC.esc(f.name)}</b><span>${CC.esc(f.variant)} · ${CC.fmt(CC.num(f.km))} km</span></div><div class="p">${CC.fmt(f.price)} €</div></div>`;}
+if(f&&matchMedia("(min-width:701px)").matches){$("feat").href=CC.url(f);$("feat").innerHTML=`<img loading="lazy" decoding="async" src="${f.images[0]?.s768||f.images[0]?.mid||""}" alt="${CC.esc(f.name)}"><div class="fb"><div><small>Nova vozila u ponudi</small><b>${CC.esc(f.name)}</b><span>${CC.esc(f.variant)} · ${CC.fmt(CC.num(f.km))} km</span></div><div class="p">${CC.fmt(f.price)} €</div></div>`;}
 
 /* Pretraga po šifri */
 $("sifra").addEventListener("input",e=>{

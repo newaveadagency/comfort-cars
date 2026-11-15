@@ -143,12 +143,23 @@ def static_body(c, title, price, sold):
     return "\n".join(out)
 
 
+def add_sizes(items):
+    """Svakoj fotografiji oglasa dodaj provjerenu verziju od 768 px (za mozaik i mobilni prikaz)."""
+    sizes = responsive([i["mid"] for c in items for i in c.get("images", []) if i.get("mid")])
+    out = []
+    for c in items:
+        c = dict(c)
+        c["images"] = [dict(i, **({"s768": sizes[i["mid"]]["768"]} if "768" in sizes.get(i.get("mid"), {}) else {})) for i in c.get("images", [])]
+        out.append(c)
+    return out
+
+
 def build_pages(items, template):
     if os.path.isdir(OUT_DIR):
         shutil.rmtree(OUT_DIR)
     os.makedirs(OUT_DIR)
     # putanje u predlošku postaju apsolutne (stranica je na /vozilo/<slug>/)
-    tpl = re.sub(r'(href|src)="(style\.css|cards\.js|index\.html[^"]*|ponuda\.html[^"]*)"', r'\1="' + REL + r'\2"', template)
+    tpl = re.sub(r'(href|src)="(style\.css|cards\.js|fonts/[^"]*|index\.html[^"]*|ponuda\.html[^"]*)"', r'\1="' + REL + r'\2"', template)
     for c in items:
         title = clean_title(c.get("title"))
         price = int(c["price"]) if str(c.get("price") or "").isdigit() else None
@@ -270,7 +281,7 @@ def build_all():
     with open(os.path.join(ROOT, "vozilo.html"), encoding="utf-8") as f:
         template = f.read()
     build_light(items)
-    build_pages(items, template)
+    build_pages(add_sizes(items), template)
     build_seo(items)
     return len(items)
 

@@ -6,9 +6,8 @@
 <title>Vozilo – Comfort Cars</title>
 <meta name="description" content="Comfort Cars – Prodaja provjerenih rabljenih vozila u Splitu">
 <link rel="icon" href="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/favicon-32x32-1.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://comfort-cars.b-cdn.net">
+<link rel="preload" href="fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <style>
 /* ---------- vrh oglasa ---------- */
@@ -188,6 +187,8 @@
 </style>
 </head>
 <body>
+<div id="intro" aria-hidden="true"><div class="in"><img src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo-inv-1.svg" alt="" width="320" height="40"><div class="bar"><i></i></div><small>Prodaja provjerenih rabljenih vozila u Splitu</small></div></div>
+<script>(function(){var el=document.getElementById("intro"),d=document.documentElement;try{if(sessionStorage.getItem("cc-intro")||matchMedia("(prefers-reduced-motion: reduce)").matches){el.remove();return}sessionStorage.setItem("cc-intro","1")}catch(e){}d.style.overflow="hidden";setTimeout(function(){el.classList.add("out");d.style.overflow="";setTimeout(function(){el.remove()},900)},1650)})();</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -256,7 +257,10 @@
       </div>
     </div>
     <div class="fmap">
-      <iframe title="Lokacija Comfort Cars" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Comfort+Cars,+Put+Krtina,+21212+Ka%C5%A1tel+Su%C4%87urac&amp;output=embed"></iframe>
+      <div class="fmap-map">
+        <iframe title="Lokacija Comfort Cars" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Comfort+Cars,+Put+Krtina,+21212+Ka%C5%A1tel+Su%C4%87urac&amp;output=embed"></iframe>
+        <span class="fmap-pin" aria-hidden="true"></span>
+      </div>
       <div class="fmap-info"><h4>Lokacija trgovine</h4><p>Put Krtina, 21212 Kaštel Sućurac, Hrvatska</p><p>Pon - Pet 09:00 - 18:00 · Subota 09:00 - 14:00</p>
         <a class="btn btn-brand" href="https://www.google.com/maps/dir/?api=1&amp;destination=Comfort+Cars+Put+Krtina+21212+Ka%C5%A1tel+Su%C4%87urac" target="_blank" rel="noopener">Upute do salona</a></div>
     </div>
@@ -305,7 +309,7 @@ if(!c){
   const tel=p=>"tel:+385"+p.replace(/\s/g,"").replace(/^0/,"");
   const kmTxt=c.km?fmt(num(c.km))+" km":"";
 
-  const tiles=imgs.slice(0,5).map((im,i)=>`<button data-i="${i}" aria-label="Fotografija ${i+1}"><img ${i?'loading="lazy"':""} src="${im.mid}" alt="${i?"":esc(title)}">
+  const tiles=imgs.slice(0,5).map((im,i)=>`<button data-i="${i}" aria-label="Fotografija ${i+1}"><img ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async" src="${i?(im.s768||im.mid):im.mid}" alt="${i?"":esc(title)}">
     ${i===4&&N>5?`<span class="mmore"><span><svg><use href="#cam"/></svg>+${N-5} fotografija</span></span>`:""}</button>`).join("");
 
   $("app").innerHTML=`
@@ -338,7 +342,7 @@ if(!c){
   <div class="wrap">
     <div class="mosaic${N<5?" few":""}" id="mosaic">${N<5?`<button data-i="0"><img src="${imgs[0].mid}" alt="${esc(title)}"><span class="mmore" style="background:rgba(18,19,20,.25);place-items:end start;padding:16px"><span style="flex-direction:row;font-size:14px"><svg style="width:18px;height:18px"><use href="#cam"/></svg>${N} fotografija</span></span></button>`:tiles}</div>
     <div class="m-slider">
-      <div class="m-track" id="mTrack">${imgs.map((im,i)=>`<img ${i?'loading="lazy"':""} src="${im.mid}" alt="" data-i="${i}">`).join("")}</div>
+      <div class="m-track" id="mTrack">${imgs.map((im,i)=>`<img ${i?'loading="lazy"':""} decoding="async" src="${im.s768||im.mid}" alt="" data-i="${i}">`).join("")}</div>
       <span class="m-count" id="mCount">1 / ${N}</span>
     </div>
   </div>
@@ -503,7 +507,7 @@ if(!c){
     warm(cur+1);warm(cur-1);warm(cur+2);              /* susjedne unaprijed */
   };
   /* prvih nekoliko fotografija zagrij čim se stranica smiri */
-  (window.requestIdleCallback||setTimeout)(()=>imgs.slice(0,6).forEach(im=>preload(im.mid)),1200);
+  {const w=()=>imgs.slice(0,6).forEach(im=>preload(im.mid));window.requestIdleCallback?requestIdleCallback(w,{timeout:2500}):setTimeout(w,1200)}
   window.openLb=i=>{cur=i||0;$("lb").classList.add("open");document.body.style.overflow="hidden";lbShow()};
   window.closeLb=()=>{$("lb").classList.remove("open");document.body.style.overflow=""};
   window.lbGo=d=>{cur=(cur+d+N)%N;lbShow()};
