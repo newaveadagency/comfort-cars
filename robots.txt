@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /backup/
+Disallow: /upiti.json
+Disallow: /ponuda.html?*
+
+Sitemap: https://comfortcars.hr/sitemap.xml

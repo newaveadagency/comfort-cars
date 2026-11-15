@@ -1,0 +1,8 @@
+# privatno / lokalno
+data/
+backup/
+*.tmp
+__pycache__/
+.DS_Store
+# generira build.py
+vozilo/

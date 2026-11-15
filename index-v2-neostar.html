@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comfort Cars — Provjerena rabljena vozila, Split</title>
+<meta name="description" content="Provjerena rabljena vozila iz zapadne Europe s jamstvom do 24 mjeseca i financiranjem. Comfort Cars, Kaštel Sućurac / Split.">
+<link rel="icon" href="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/favicon-32x32-1.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16181d;
+  --ink-2:#3b3f47;
+  --muted:#6f747d;
+  --line:#e7e8ec;
+  --bg:#ffffff;
+  --soft:#f5f6f8;
+  --field:#f1f3f6;
+  --brand:#ff4713;
+  --brand-dark:#e63a08;
+  --brand-50:#fff1eb;
+  --peach:#ffe3cf;
+  --mint:#c9f2df;
+  --sky:#d6ecff;
+  --sand:#fff4dc;
+  --green:#16a34a;
+  --r-xl:28px;
+  --r-lg:20px;
+  --r-md:14px;
+  --r-sm:10px;
+  --wrap:1280px;
+  --gut:clamp(16px,3.5vw,32px);
+  --shadow:0 1px 2px rgba(22,24,29,.04),0 8px 24px rgba(22,24,29,.06);
+  --shadow-lg:0 2px 4px rgba(22,24,29,.04),0 20px 48px rgba(22,24,29,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:"Geist",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+svg.i{width:20px;height:20px;flex:0 0 auto}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 20px;border-radius:999px;font-weight:600;font-size:15px;border:0;cursor:pointer;transition:background .2s,box-shadow .2s,transform .15s,color .2s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-brand{background:var(--brand);color:#fff}
+.btn-brand:hover{background:var(--brand-dark)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000}
+.btn-line{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-line:hover{background:var(--ink);color:#fff}
+.btn-white{background:#fff;color:var(--ink)}
+.btn-white:hover{background:var(--soft)}
+.btn-sm{height:38px;padding:0 16px;font-size:14px}
+
+/* ---------- header ---------- */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(1.6) blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:72px}
+.nav .logo img{height:22px;width:auto}
+.nav ul{display:flex;list-style:none;gap:2px}
+.nav ul a{display:block;padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--ink-2);transition:background .2s,color .2s}
+.nav ul a:hover{background:var(--soft);color:var(--ink)}
+.qsearch{flex:1;max-width:360px;display:flex;align-items:center;gap:10px;height:42px;padding:0 16px;border-radius:999px;background:var(--field);color:var(--muted);font-size:14px;cursor:text;border:1px solid transparent;transition:border .2s,background .2s}
+.qsearch:hover{background:#fff;border-color:var(--line)}
+.qsearch input{border:0;background:transparent;outline:none;width:100%;color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--soft);cursor:pointer;place-items:center}
+@media(max-width:1100px){.qsearch{display:none}}
+@media(max-width:900px){
+  .nav ul{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#fff;padding:12px var(--gut) 20px;border-bottom:1px solid var(--line);box-shadow:var(--shadow-lg)}
+  .nav ul.open{display:flex}
+  .nav ul a{padding:14px 12px;font-size:17px}
+  .burger{display:grid}
+  .nav .hide-m{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{padding:16px var(--gut) 0}
+.hero-box{position:relative;max-width:calc(var(--wrap) + 160px);margin:0 auto;border-radius:var(--r-xl);overflow:hidden;background:#111 url("https://comfortcars.hr/wp-content/uploads/2026/07/bcg-naslovnica-copy.webp") center 55%/cover no-repeat;padding:clamp(56px,8vw,104px) var(--gut) clamp(32px,4vw,48px)}
+.hero-box::before{content:"";position:absolute;inset:0;background:rgba(10,12,16,.48)}
+.hero-in{position:relative;max-width:980px;margin:0 auto;text-align:center;color:#fff}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 10px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);font-size:13.5px;font-weight:500;border:1px solid rgba(255,255,255,.2)}
+.pill i{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.25)}
+.hero h1{font-size:clamp(36px,5.6vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:700;margin:20px auto 16px;max-width:15ch}
+.hero h1 span{color:#ffb595}
+.hero .lead{font-size:clamp(16px,1.5vw,19px);color:rgba(255,255,255,.86);max-width:56ch;margin:0 auto}
+
+.finder{margin-top:36px;background:#fff;color:var(--ink);border-radius:var(--r-lg);padding:14px;text-align:left;box-shadow:var(--shadow-lg)}
+.f-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.field{position:relative;background:var(--field);border-radius:var(--r-sm);padding:9px 14px 9px;transition:background .2s,box-shadow .2s}
+.field:hover{background:#eaedf1}
+.field:focus-within{background:#fff;box-shadow:inset 0 0 0 1.5px var(--brand)}
+.field label{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.field select{appearance:none;width:100%;border:0;background:transparent;outline:none;font-size:15px;font-weight:600;padding-right:20px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%236f747d' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
+.f-toggles{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tog{display:flex;align-items:center;gap:10px;padding:8px 12px 8px 14px;border-radius:var(--r-sm);background:var(--field);font-size:14px;font-weight:500;cursor:pointer;user-select:none;flex:1;justify-content:space-between;min-width:170px}
+.tog input{appearance:none;width:36px;height:20px;border-radius:999px;background:#cfd3da;position:relative;cursor:pointer;transition:background .2s;flex:0 0 auto}
+.tog input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.tog input:checked{background:var(--brand)}
+.tog input:checked::after{transform:translateX(16px)}
+.f-go{margin-top:10px;width:100%;height:54px;border-radius:var(--r-md);font-size:16px}
+.more{display:none}
+@media(max-width:860px){.f-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.finder .adv{display:none}.finder.open .adv{display:block}.finder.open .f-toggles{display:flex}.more{display:block;width:100%;margin-top:8px;height:40px;border:0;border-radius:var(--r-sm);background:transparent;color:var(--brand);font-weight:600;cursor:pointer}}
+
+/* ---------- categories ---------- */
+.cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:28px 0 8px}
+.cat{display:flex;flex-direction:column;align-items:center;gap:8px;width:104px;padding:14px 6px 12px;border-radius:var(--r-md);border:0;background:transparent;cursor:pointer;font-size:13px;font-weight:500;color:var(--ink-2);transition:background .2s}
+.cat .ic{width:56px;height:56px;border-radius:50%;background:var(--brand-50);display:grid;place-items:center;color:var(--brand);transition:transform .2s,background .2s,color .2s}
+.cat .ic svg{width:28px;height:28px}
+.cat:hover .ic{transform:translateY(-2px)}
+.cat.on .ic{background:var(--brand);color:#fff}
+.cat.on{color:var(--ink);font-weight:600}
+@media(max-width:700px){.cats{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;margin:0 calc(var(--gut)*-1);padding-left:var(--gut);padding-right:var(--gut)}.cat{flex:0 0 88px;width:88px}}
+
+/* ---------- section heads ---------- */
+section{padding:clamp(48px,6vw,80px) 0}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.sh h2{font-size:clamp(28px,3.4vw,42px);letter-spacing:-.03em;line-height:1.1;font-weight:700}
+.sh p{color:var(--muted);margin-top:6px}
+.link{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink)}
+.link:hover{color:var(--brand)}
+.link svg{transition:transform .2s}
+.link:hover svg{transform:translateX(3px)}
+
+/* ---------- car cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+@media(max-width:1180px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}}
+.car{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s,border-color .25s}
+.car:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:transparent}
+.car .ph{position:relative;aspect-ratio:4/3;background:var(--soft);overflow:hidden}
+.car .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.car:hover .ph img{transform:scale(1.04)}
+.badge{position:absolute;bottom:12px;left:12px;padding:5px 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.badge.dolazak{background:var(--ink);color:#fff}
+.badge.akcija{background:var(--brand);color:#fff}
+.badge.rezervacija{background:#ffd23f}
+.badge.prodano{background:#fff;color:var(--muted)}
+.fav{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.95);border:0;display:grid;place-items:center;cursor:pointer;z-index:3;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .15s}
+.fav:hover{transform:scale(1.08)}
+.fav svg{width:18px;height:18px}
+.fav.on svg{fill:var(--brand);stroke:var(--brand)}
+.car.sold .ph img{filter:grayscale(1);opacity:.7}
+.car .bd{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.car h3{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.25}
+.car .var{color:var(--muted);font-size:14px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chips span{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;background:var(--soft);font-size:12.5px;font-weight:500;color:var(--ink-2)}
+.chips svg{width:13px;height:13px;color:var(--muted)}
+.car .pr{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:auto;padding-top:16px}
+.car .pr b{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.car .pr small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.car .pr .rate{text-align:right;font-size:13px;color:var(--muted);line-height:1.3}
+.car .pr .rate strong{display:block;color:var(--green);font-size:15px}
+.car>a.cover{position:absolute;inset:0;z-index:2}
+.empty{grid-column:1/-1;background:var(--soft);border-radius:var(--r-lg);padding:56px 24px;text-align:center;color:var(--muted)}
+.empty a{color:var(--brand);font-weight:600}
+.count{font-size:14px;color:var(--muted);font-weight:500}
+
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px}
+.tile{border-radius:var(--r-xl);padding:clamp(24px,3.2vw,40px);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.tile h3{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;line-height:1.1;font-weight:700}
+.tile p{margin-top:12px;color:var(--ink-2);max-width:44ch}
+.tile .btn{margin-top:22px;align-self:flex-start}
+.t-deal{grid-column:span 12;background:var(--brand);color:#fff;display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:center}
+.t-deal h3{font-size:clamp(34px,4.4vw,58px)}
+.t-deal p{color:rgba(255,255,255,.9)}
+.t-deal .eyebrow{display:inline-block;background:rgba(255,255,255,.18);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:16px}
+.deal-cars{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dcar{background:#fff;color:var(--ink);border-radius:var(--r-lg);overflow:hidden;display:block;transition:transform .25s}
+.dcar:hover{transform:translateY(-4px)}
+.dcar img{aspect-ratio:4/3;width:100%;object-fit:cover}
+.dcar div{padding:12px 16px 16px}
+.dcar b{display:block;font-size:16px}
+.dcar span{font-size:13px;color:var(--muted)}
+.dcar .p{display:block;margin-top:6px;font-size:20px;font-weight:700;color:var(--brand)}
+.t-fin{grid-column:span 7;background:var(--mint)}
+.t-war{grid-column:span 5;background:var(--peach)}
+.t-big{position:absolute;right:-6px;bottom:-28px;font-size:clamp(120px,14vw,190px);font-weight:800;letter-spacing:-.06em;line-height:1;color:rgba(22,24,29,.07);pointer-events:none}
+.ticks{list-style:none;margin-top:18px;display:grid;gap:8px}
+.ticks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500}
+.ticks li svg{width:20px;height:20px;flex:0 0 auto;color:var(--ink);margin-top:1px}
+@media(max-width:960px){.t-deal{grid-template-columns:1fr}.t-fin,.t-war{grid-column:span 12}}
+@media(max-width:520px){.deal-cars{grid-template-columns:1fr}}
+
+/* ---------- calculator ---------- */
+.calc-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;align-items:stretch}
+.calc-intro{background:var(--sky);border-radius:var(--r-xl);padding:clamp(24px,3.2vw,40px);display:flex;flex-direction:column}
+.calc-intro h3{font-size:clamp(26px,2.8vw,36px);letter-spacing:-.03em;line-height:1.1;font-weight:700}
+.calc-intro p{margin-top:12px;color:var(--ink-2)}
+.calc-intro .partners{margin-top:auto;padding-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.calc-intro .partners span{background:rgba(255,255,255,.7);padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:600}
+.calc{background:#fff;border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(24px,3.2vw,40px);box-shadow:var(--shadow)}
+.calc .row{margin-bottom:24px}
+.calc .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;font-size:15px;color:var(--muted);font-weight:500}
+.calc .top b{color:var(--ink);font-size:17px}
+input[type=range]{width:100%;appearance:none;height:6px;border-radius:999px;background:linear-gradient(var(--brand),var(--brand)) 0/var(--p,50%) 100% no-repeat,var(--field);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--brand);box-shadow:0 2px 6px rgba(0,0,0,.15);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--brand);cursor:pointer}
+.calc .out{background:var(--soft);border-radius:var(--r-lg);padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.calc .out span{color:var(--muted);font-weight:500}
+.calc .out b{font-size:clamp(34px,4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.calc .out b small{font-size:.4em;color:var(--muted);font-weight:600;letter-spacing:0}
+.calc .note{font-size:12.5px;color:var(--muted);margin-top:14px}
+@media(max-width:900px){.calc-wrap{grid-template-columns:1fr}}
+
+/* ---------- info cards ---------- */
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.icard{background:var(--soft);border-radius:var(--r-xl);overflow:hidden;display:flex;flex-direction:column}
+.icard img{aspect-ratio:16/10;width:100%;object-fit:cover}
+.icard div{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
+.icard h4{font-size:21px;letter-spacing:-.02em;font-weight:700}
+.icard p{color:var(--ink-2);font-size:15px;margin-top:8px;flex:1}
+.icard .btn{margin-top:18px;align-self:flex-start}
+@media(max-width:900px){.cards3{grid-template-columns:1fr}}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:24px}
+.step .n{width:40px;height:40px;border-radius:12px;background:var(--brand-50);color:var(--brand);display:grid;place-items:center;font-weight:700}
+.step h4{font-size:18px;font-weight:700;margin:16px 0 6px;letter-spacing:-.01em}
+.step p{color:var(--muted);font-size:15px}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* ---------- code + brands ---------- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.box{border-radius:var(--r-xl);padding:clamp(24px,3vw,36px);background:var(--sand)}
+.box h3{font-size:24px;font-weight:700;letter-spacing:-.02em}
+.box p{color:var(--ink-2);margin-top:6px;font-size:15px}
+.code-f{display:flex;gap:8px;margin-top:20px;background:#fff;border-radius:999px;padding:6px}
+.code-f input{flex:1;min-width:0;border:0;outline:none;padding:0 16px;font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;background:transparent}
+.code-f input::placeholder{text-transform:none;letter-spacing:0;font-weight:500;color:#9aa0a8}
+.res{margin-top:12px;font-size:14px;min-height:22px}
+.res a{color:var(--brand);font-weight:600}
+.brands{background:var(--soft)}
+.brand-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.brand-list button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s}
+.brand-list button:hover{border-color:var(--brand);color:var(--brand)}
+.brand-list button small{color:var(--muted);font-weight:500;margin-left:4px}
+@media(max-width:900px){.duo{grid-template-columns:1fr}}
+
+/* ---------- FAQ ---------- */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,64px)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:17px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{font-style:normal;width:32px;height:32px;border-radius:50%;background:var(--soft);display:grid;place-items:center;flex:0 0 auto;transition:transform .25s,background .2s}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--brand-50);color:var(--brand)}
+.faq details p{padding:0 48px 20px 0;color:var(--ink-2)}
+.seo p{color:var(--ink-2);margin-top:14px}
+@media(max-width:900px){.faq-wrap{grid-template-columns:1fr}}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#d7d9de;border-radius:var(--r-xl) var(--r-xl) 0 0;margin-top:clamp(40px,5vw,64px);padding:clamp(48px,6vw,72px) 0 24px}
+.f-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.f-cta h2{color:#fff;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.03em;line-height:1.1;font-weight:700;max-width:18ch}
+.f-cta .acts{display:flex;gap:10px;flex-wrap:wrap}
+.f-grid2{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;padding:40px 0}
+.f-grid2 h5{color:#fff;font-size:14px;font-weight:600;margin-bottom:14px}
+.f-grid2 a,.f-grid2 p{display:block;font-size:15px;color:#a9adb5;margin-bottom:8px}
+.f-grid2 a:hover{color:#fff}
+.f-grid2 .big{font-size:22px;color:#fff;font-weight:700;letter-spacing:-.01em}
+.hours div{display:flex;justify-content:space-between;gap:12px;font-size:15px;color:#a9adb5;padding:4px 0}
+.hours div b{color:#fff;font-weight:500}
+.soc{display:flex;gap:8px;margin-top:16px}
+.soc a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;margin:0;transition:background .2s}
+.soc a:hover{background:var(--brand)}
+.soc svg{width:18px;height:18px;fill:#fff}
+.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8a8f98}
+.legal div{display:flex;gap:20px;flex-wrap:wrap}
+.legal a:hover{color:#fff}
+@media(max-width:900px){.f-grid2{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.f-grid2{grid-template-columns:1fr}}
+
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:transform .2s}
+.wa:hover{transform:scale(1.06)}
+.wa svg{width:30px;height:30px;fill:#fff}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(255,255,255,.6)" stroke="none"/><path d="m7.5 12.5 3 3 6-6.5"/></symbol>
+  <symbol id="cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="road" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="m12 12 5-5"/></symbol>
+  <symbol id="bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6 8v8M12 8v8M18 8v4H6"/></symbol>
+  <symbol id="c-all" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="9" height="9" rx="2.5"/><rect x="18" y="5" width="9" height="9" rx="2.5"/><rect x="5" y="18" width="9" height="9" rx="2.5"/><rect x="18" y="18" width="9" height="9" rx="2.5"/></symbol>
+  <symbol id="c-suv" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-4.5c0-1 .6-1.8 1.5-2.1L8 13l3-4.5c.4-.6 1-.9 1.7-.9H22c.7 0 1.3.3 1.7.9L27 13.5c1.2.4 2 1.5 2 2.8V21h-2.5"/><path d="M11 21h10"/><path d="M3 21h2.5"/><circle cx="8.5" cy="21.5" r="2.8"/><circle cx="23.5" cy="21.5" r="2.8"/><path d="M8 13h19"/></symbol>
+  <symbol id="c-sedan" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 20.5v-2.8c0-1 .7-1.9 1.7-2.1l5-1 3.6-3.6c.5-.5 1.2-.8 1.9-.8h5.6c.8 0 1.6.4 2.1 1l2.6 3.2 3.4.8c1 .3 1.6 1.1 1.6 2.1v3.2h-2.5"/><path d="M11 20.5h10"/><path d="M2.5 20.5H5"/><circle cx="8" cy="21" r="2.8"/><circle cx="24" cy="21" r="2.8"/></symbol>
+  <symbol id="c-auto" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="4" width="14" height="24" rx="5"/><path d="M16 9v9"/><circle cx="16" cy="21" r="2"/><path d="M13 9h6"/></symbol>
+  <symbol id="c-deal" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.6 4.5H26a1.5 1.5 0 0 1 1.5 1.5v8.4a2 2 0 0 1-.6 1.4L15.8 26.9a2 2 0 0 1-2.8 0l-7.9-7.9a2 2 0 0 1 0-2.8L16.2 5.1a2 2 0 0 1 1.4-.6z"/><circle cx="22" cy="10" r="1.8"/></symbol>
+  <symbol id="c-soon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h15v13H3z"/><path d="M18 13h5l4 4.5V22h-9"/><circle cx="8" cy="23" r="2.5"/><circle cx="22" cy="23" r="2.5"/></symbol>
+  <symbol id="c-prem" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 4 3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9L16 22.1l-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z"/></symbol>
+  <symbol id="c-cheap" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="11"/><path d="M20 11.5a5.5 5.5 0 1 0 0 9M10 14.5h7M10 17.5h7"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Comfort Cars naslovnica"><img src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo.svg" alt="Comfort Cars"></a>
+    <ul id="menu">
+      <li><a href="#ponuda">Vozila</a></li>
+      <li><a href="#financiranje">Financiranje</a></li>
+      <li><a href="#jamstvo">Jamstvo</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <label class="qsearch"><svg class="i"><use href="#search"/></svg><input id="qIn" placeholder="Traži npr. „Tiguan” ili „automatik”" aria-label="Brza pretraga"></label>
+    <div class="right">
+      <a class="btn btn-line btn-sm hide-m" href="https://comfortcars.hr/ponuda-vozila-split/?status=akcija">Akcija</a>
+      <a class="btn btn-brand btn-sm" href="tel:+385911100031"><svg class="i" style="width:16px;height:16px"><use href="#phone"/></svg>091 110 0031</a>
+      <button class="burger" aria-label="Izbornik" onclick="document.getElementById('menu').classList.toggle('open')"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-box">
+    <div class="hero-in">
+      <span class="pill"><i id="openDot"></i><span id="openState">Otvoreno danas do 18:00</span></span>
+      <h1>Tvoj sljedeći auto, <span>već provjeren.</span></h1>
+      <p class="lead">Rabljena vozila iz zapadne Europe s poznatom servisnom poviješću, jamstvom do 24 mjeseca i financiranjem na jednom mjestu.</p>
+
+      <form class="finder" onsubmit="event.preventDefault();goSearch()">
+        <div class="f-grid">
+          <div class="field"><label for="sBrand">Marka</label><select id="sBrand"><option value="">Sve marke</option></select></div>
+          <div class="field"><label for="sPrice">Cijena do</label><select id="sPrice"><option value="">Bilo koja</option><option value="20000">20.000 €</option><option value="25000">25.000 €</option><option value="30000">30.000 €</option><option value="35000">35.000 €</option></select></div>
+          <div class="field"><label for="sYear">Godište od</label><select id="sYear"><option value="">Bilo koje</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option></select></div>
+          <div class="field adv"><label for="sKm">Kilometraža do</label><select id="sKm"><option value="">Bilo koja</option><option value="50000">50.000 km</option><option value="100000">100.000 km</option><option value="125000">125.000 km</option><option value="150000">150.000 km</option></select></div>
+          <div class="field"><label for="sGear">Mjenjač</label><select id="sGear"><option value="">Svi</option><option>Automatski</option><option>Manualni</option></select></div>
+          <div class="field adv"><label for="sFuel">Gorivo</label><select id="sFuel"><option value="">Sva</option><option>Diesel</option><option>Benzin</option><option>Hibrid</option><option>Električni</option></select></div>
+          <div class="field adv"><label for="sRate">Mjesečna rata do</label><select id="sRate"><option value="">Bilo koja</option><option value="300">300 €</option><option value="400">400 €</option><option value="500">500 €</option></select></div>
+          <div class="field adv"><label for="sSort">Poredaj</label><select id="sSort"><option value="new">Najnovije</option><option value="pa">Cijena ↑</option><option value="pd">Cijena ↓</option><option value="km">Kilometraža ↑</option></select></div>
+        </div>
+        <button type="button" class="more" onclick="this.closest('.finder').classList.toggle('open');this.textContent=this.closest('.finder').classList.contains('open')?'Manje filtera':'Više filtera'">Više filtera</button>
+        <div class="f-toggles adv">
+          <label class="tog">Samo na akciji <input type="checkbox" id="tDeal"></label>
+          <label class="tog">Vozila u dolasku <input type="checkbox" id="tSoon"></label>
+          <label class="tog">Sakrij prodana <input type="checkbox" id="tSold" checked></label>
+        </div>
+        <button class="btn btn-brand f-go" type="submit"><svg class="i"><use href="#search"/></svg><span id="goLabel">Prikaži vozila</span></button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cats" id="cats"></div>
+</div>
+
+<!-- ============ PONUDA ============ -->
+<section id="ponuda" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sh">
+      <div><h2>Nova vozila u ponudi</h2><p class="count" id="count"></p></div>
+      <a class="link" href="https://comfortcars.hr/ponuda-vozila-split/">Pogledaj sva vozila <svg class="i"><use href="#arrow"/></svg></a>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ============ BENTO ============ -->
+<section style="padding-top:0" id="jamstvo">
+  <div class="wrap bento">
+    <div class="tile t-deal rv">
+      <div>
+        <span class="eyebrow">Vozila na akciji</span>
+        <h3>Niža cijena.<br>Ista provjera.</h3>
+        <p>Akcijska vozila prolaze istu detaljnu provjeru i dolaze s istim jamstvom. Samo brže odlaze.</p>
+        <a class="btn btn-white" href="https://comfortcars.hr/ponuda-vozila-split/?status=akcija">Istraži akcijsku ponudu <svg class="i"><use href="#arrow"/></svg></a>
+      </div>
+      <div class="deal-cars" id="dealCars"></div>
+    </div>
+
+    <div class="tile t-war rv">
+      <h3>12 do 24 mjeseca jamstva</h3>
+      <p>Jamstvom upravlja neovisni partner Motive Service.</p>
+      <ul class="ticks">
+        <li><svg><use href="#check"/></svg>Motor, mjenjač, turbina i ključni sklopovi</li>
+        <li><svg><use href="#check"/></svg>Više od 20 sustava — kočnice, upravljanje, klima</li>
+        <li><svg><use href="#check"/></svg>Benzin, dizel, hibrid i električna vozila</li>
+        <li><svg><use href="#check"/></svg>Vozila do 6 godina i do 170.000 km</li>
+      </ul>
+      <a class="btn btn-dark" href="https://comfortcars.hr/jamstvo/">Saznaj više o jamstvu</a>
+      <span class="t-big" aria-hidden="true">24</span>
+    </div>
+
+    <div class="tile t-fin rv">
+      <h3>Leasing ili kredit — papirologiju rješavamo mi</h3>
+      <p>Pomažemo odabrati model financiranja koji najbolje odgovara tvojim mogućnostima i vodimo kompletnu administraciju, od upita do preuzimanja ključeva.</p>
+      <ul class="ticks">
+        <li><svg><use href="#check"/></svg>Leasing i kreditni partneri</li>
+        <li><svg><use href="#check"/></svg>Rezervacija vozila u dolasku</li>
+        <li><svg><use href="#check"/></svg>Osobni pristup i stručna pomoć pri odabiru</li>
+      </ul>
+      <a class="btn btn-dark" href="#financiranje">Izračunaj ratu</a>
+      <span class="t-big" aria-hidden="true">€</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KALKULATOR ============ -->
+<section id="financiranje" style="padding-top:0">
+  <div class="wrap calc-wrap">
+    <div class="calc-intro rv">
+      <h3>Koliko bi plaćao mjesečno?</h3>
+      <p>Pomakni klizače i vidi okvirnu ratu. Za točnu ponudu javi nam se i mi ćemo sve dogovoriti s partnerom.</p>
+      <a class="btn btn-dark" style="margin-top:22px;align-self:flex-start" href="https://comfortcars.hr/financiranje/">Zatraži ponudu financiranja</a>
+      <div class="partners"><span>Leasing</span><span>Kredit</span><span>Gotovina</span></div>
+    </div>
+    <div class="calc rv">
+      <div class="row"><div class="top"><span>Cijena vozila</span><b id="vPrice"></b></div><input type="range" id="rPrice" min="10000" max="50000" step="500" value="25000" aria-label="Cijena vozila"></div>
+      <div class="row"><div class="top"><span>Učešće</span><b id="vDown"></b></div><input type="range" id="rDown" min="0" max="50" step="5" value="20" aria-label="Učešće"></div>
+      <div class="row"><div class="top"><span>Rok otplate</span><b id="vTerm"></b></div><input type="range" id="rTerm" min="12" max="84" step="12" value="60" aria-label="Rok otplate"></div>
+      <div class="out"><span>Okvirna mjesečna rata</span><b id="vRate"></b></div>
+      <p class="note">Informativni izračun uz pretpostavljenu kamatu od 6,9 %. Točnu ponudu daje leasing ili kreditni partner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KORACI ============ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sh rv"><div><h2>Kupnja u četiri koraka</h2><p>Bez pritiska i bez žurbe — da doneseš sigurnu i informiranu odluku.</p></div></div>
+    <div class="steps rv">
+      <div class="step"><div class="n">1</div><h4>Odaberi</h4><p>Pregledaj ponudu online ili nas nazovi — pomoći ćemo suziti izbor prema budžetu.</p></div>
+      <div class="step"><div class="n">2</div><h4>Pogledaj i probaj</h4><p>Dođi u salon u Kaštel Sućurcu na pregled i probnu vožnju.</p></div>
+      <div class="step"><div class="n">3</div><h4>Financiraj</h4><p>Gotovina, leasing ili kredit — kompletnu administraciju vodimo mi.</p></div>
+      <div class="step"><div class="n">4</div><h4>Vozi bezbrižno</h4><p>Preuzmi vozilo s jamstvom do 24 mjeseca i potpunom dokumentacijom.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFO KARTICE ============ -->
+<section style="padding-top:0">
+  <div class="wrap cards3">
+    <div class="icard rv">
+      <img loading="lazy" src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/10/D49099C9-EDF1-4420-9619-FBD383C0ACD8-1024x768.webp" alt="Audi Q3 u dolasku">
+      <div><h4>Rezerviraj prije dolaska</h4><p>Vozila u dolasku možeš rezervirati unaprijed — prije nego što stignu u salon.</p><button class="btn btn-line btn-sm" onclick="setCat('dolazak')">Vozila u dolasku</button></div>
+    </div>
+    <div class="icard rv">
+      <img loading="lazy" src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/10/F62DCEE1-B476-4C0A-B01C-ECF11D2A98C4-1024x768.webp" alt="Mercedes C-klasa s automatskim mjenjačem">
+      <div><h4>Automatik? Imamo izbor.</h4><p>Većina naše ponude dolazi s automatskim mjenjačem — DSG, S-tronic, EAT8 i drugi.</p><button class="btn btn-line btn-sm" onclick="setCat('auto')">Vozila s automatikom</button></div>
+    </div>
+    <div class="icard rv">
+      <img loading="lazy" src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/10/1f660601-674c-4dc5-a3ae-e5b10553c172-1024x790.webp" alt="VW Arteon">
+      <div><h4>Zašto Comfort Cars?</h4><p>Transparentno porijeklo, poznata servisna povijest i otvoreni odgovori na sva pitanja o stanju vozila.</p><a class="btn btn-line btn-sm" href="#faq">Česta pitanja</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ŠIFRA + MARKE ============ -->
+<section style="padding-top:0">
+  <div class="wrap duo">
+    <div class="box rv">
+      <h3>Imaš šifru vozila?</h3>
+      <p>Upiši šifru iz oglasa i odmah otvori vozilo. Šifre nisu iste kao na Njuškalu.</p>
+      <form class="code-f" onsubmit="event.preventDefault();findCode()">
+        <input id="codeIn" placeholder="Upiši šifru vozila" aria-label="Šifra vozila" autocomplete="off">
+        <button class="btn btn-brand btn-sm" type="submit">Pronađi</button>
+      </form>
+      <div class="res" id="codeRes"></div>
+    </div>
+    <div class="box brands rv">
+      <h3>Pretraži po marki</h3>
+      <p>Marke koje trenutno imamo u ponudi.</p>
+      <div class="brand-list" id="brandList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ + SEO ============ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap faq-wrap">
+    <div class="seo rv">
+      <div class="sh" style="margin-bottom:0"><h2>Rabljena vozila u Splitu — provjerena kvaliteta i sigurna kupnja</h2></div>
+      <p>U Comfort Carsu vjerujemo da kupnja rabljenog automobila mora biti jednostavna, transparentna i sigurna. U ponudi su pažljivo odabrana vozila iz provjerenih zapadnoeuropskih izvora, s poznatom servisnom poviješću i provjerenim porijeklom.</p>
+      <p>Naš cilj nije prodati automobil pod svaku cijenu, već pomoći kupcu da donese sigurnu i informiranu odluku.</p>
+    </div>
+    <div class="faq rv">
+      <details open><summary>Odakle dolaze vaša vozila? <i>+</i></summary><p>Vozila nabavljamo iz provjerenih zapadnoeuropskih izvora, s transparentnim porijeklom i poznatom servisnom poviješću.</p></details>
+      <details><summary>Što pokriva jamstvo? <i>+</i></summary><p>Jamstvo od 12 do 24 mjeseca pokriva motor, mjenjač, turbinu i više od 20 važnih sustava, uključujući upravljanje, kočnice i klimatizaciju — za vozila do 6 godina i 170.000 km, prema uvjetima jamstva Motive Servicea.</p></details>
+      <details><summary>Mogu li auto kupiti na leasing ili kredit? <i>+</i></summary><p>Da. Kupnju je moguće realizirati putem leasinga ili drugih modela financiranja, a kompletnu administraciju vodimo mi.</p></details>
+      <details><summary>Mogu li rezervirati vozilo koje je još u dolasku? <i>+</i></summary><p>Da, vozila označena kao „U dolasku” moguće je rezervirati prije nego što stignu u salon.</p></details>
+      <details><summary>Gdje se nalazite i kada radite? <i>+</i></summary><p>Salon je na adresi Put Krtina, 21212 Kaštel Sućurac. Radimo ponedjeljak – petak 09–18 h i subotom 09–14 h.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="f-cta">
+      <h2>Svrati na kavu i probnu vožnju.</h2>
+      <div class="acts">
+        <a class="btn btn-brand" href="tel:+385911100031"><svg class="i"><use href="#phone"/></svg>Nazovi</a>
+        <a class="btn btn-white" href="https://wa.me/385911100031">Piši na WhatsApp</a>
+      </div>
+    </div>
+    <div class="f-grid2">
+      <div>
+        <img src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo-inv-1.svg" alt="Comfort Cars" style="height:22px;width:auto;margin-bottom:18px">
+        <p>Prodaja provjerenih rabljenih vozila s jamstvom i financiranjem.</p>
+        <div class="soc">
+          <a href="https://www.instagram.com/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.700-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.9a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.1-9.4a1.2 1.2 0 1 0 0 2.3 1.2 1.2 0 0 0 0-2.3z"/></svg></a>
+          <a href="https://www.facebook.com/" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6c0-.9.6-1.1 1-1.1h2.6V1H14c-4 0-4.9 3-4.9 4.9V8H6.6v4h2.5v11H14V12h3.3l.4-4H14z"/></svg></a>
+          <a href="https://wa.me/385911100031" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.3-.5-2.4-1.5c-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.8-.7 2-1.5.2-.7.2-1.4.2-1.5-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.8 9.8 0 1 1 8.3 4.6zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a class="big" href="tel:+385911100031">+385 91 110 0031</a>
+        <a href="mailto:info@comfortcars.eu">info@comfortcars.eu</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Comfort+Cars+Put+Krtina+Ka%C5%A1tel+Su%C4%87urac" target="_blank" rel="noopener">Put Krtina, 21212 Kaštel Sućurac ↗</a>
+      </div>
+      <div>
+        <h5>Radno vrijeme</h5>
+        <div class="hours">
+          <div><span>Pon – Pet</span><b>09:00 – 18:00</b></div>
+          <div><span>Subota</span><b>09:00 – 14:00</b></div>
+          <div><span>Nedjelja</span><span>Zatvoreno</span></div>
+        </div>
+      </div>
+      <div>
+        <h5>Ponuda</h5>
+        <a href="https://comfortcars.hr/ponuda-vozila-split/">Sva vozila</a>
+        <a href="https://comfortcars.hr/ponuda-vozila-split/?status=akcija">Vozila na akciji</a>
+        <a href="#" onclick="setCat('auto');return false">Automatski mjenjač</a>
+        <a href="#" onclick="setCat('dolazak');return false">Vozila u dolasku</a>
+        <a href="https://comfortcars.hr/jamstvo/">Jamstvo</a>
+        <a href="https://comfortcars.hr/financiranje/">Financiranje</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="yr"></span> Comfort Cars · SEA MOOD d.o.o. · OIB 28104079997</span>
+      <div><a href="https://comfortcars.hr/opci-uvjeti-poslovanja/">Opći uvjeti poslovanja</a><a href="https://comfortcars.hr/privacy-statement-eu/">Izjava o zaštiti privatnosti</a></div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/385911100031" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.3-.5-2.4-1.5c-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.8-.7 2-1.5.2-.7.2-1.4.2-1.5-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.8 9.8 0 1 1 8.3 4.6zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg></a>
+
+<script>
+const CDN="https://comfort-cars.b-cdn.net/wp-content/uploads/";
+const V="https://comfortcars.hr/vozilo/";
+const cars=[
+ {id:"CC-1001",brand:"Audi",model:"Audi A4",v:"35 TDI S-Tronic",price:24990,km:93500,fuel:"Diesel",kw:120,gear:"Automatski",year:2021,status:"rezervacija",body:"sedan",prem:1,img:"2026/11/98292FDB-3E10-4DD0-8509-C9866B73EA1F-1024x768.webp",url:"audi-a4-35tdi-s-tronic-matrix-radar-navi-servisna-jamstvo/"},
+ {id:"CC-1002",brand:"VW",model:"VW T-Roc",v:"2.0 TDI DSG",price:22800,km:104700,fuel:"Diesel",kw:110,gear:"Automatski",year:2021,status:"",body:"suv",img:"2026/10/F704EEF5-5C42-471D-8ADE-917D7D90B29A-1024x768.webp",url:"vw-t-roc-20-tdi-automatik-dsgkameranaviservisnajamstvo-12mj/"},
+ {id:"CC-1003",brand:"VW",model:"VW T-Roc",v:"2.0 TDI",price:18990,km:125650,fuel:"Diesel",kw:85,gear:"Manualni",year:2021,status:"",body:"suv",img:"2026/10/IMG_6235-1024x768.webp",url:"vw-t-roc-20-tdi-navi-kamera-radar-line-assist-servisna-jamstvo/"},
+ {id:"CC-1004",brand:"VW",model:"VW Tiguan",v:"2.0 TDI DSG Life",price:25690,km:101550,fuel:"Diesel",kw:110,gear:"Automatski",year:2023,status:"dolazak",body:"suv",img:"2026/10/4786A43F-7AA1-48CC-88FE-72168A6CC35A-1024x768.webp",url:"u-dolasku%e2%80%bc%ef%b8%8fvw-tiguan-20-tdi-automatik-dsg-ambient-kamera-servisna-jam/"},
+ {id:"CC-1005",brand:"Audi",model:"Audi Q3",v:"2.0 TDI S-tronic Edition",price:27690,km:88200,fuel:"Diesel",kw:110,gear:"Automatski",year:2021,status:"dolazak",body:"suv",prem:1,img:"2026/10/4453756f-a0df-44c8-a385-f5446f430872-1024x768.webp",url:"u-dolasku%e2%80%bc%ef%b8%8faudi-q3-35-tdi-koza-kamera-full-led-virtual-servisna-jamstvo/"},
+ {id:"CC-1006",brand:"VW",model:"VW Tiguan",v:"2.0 TDI DSG Life",price:24990,km:105300,fuel:"Diesel",kw:110,gear:"Automatski",year:2022,status:"dolazak",body:"suv",img:"2026/10/5a285124-f023-4e2e-8ae4-d877664beaef-1024x768.webp",url:"vw-tiguan-20-tdi-automatik-dsg-ambient-kamera-servisna-jamstvo/"},
+ {id:"CC-1007",brand:"Mercedes",model:"Mercedes A-klasa",v:"A200d",price:22990,km:106750,fuel:"Diesel",kw:110,gear:"Automatski",year:2021,status:"dolazak",body:"sedan",prem:1,img:"2026/10/b59046ef-c910-42cd-b9ca-ca57afc4a5f2-1024x768.webp",url:"u-dolasku-mercedes-benz-a200d-automatik-full-led-kamera-koza-servisna-jamstvo/"},
+ {id:"CC-1008",brand:"Audi",model:"Audi Q3",v:"35 TDI Sportback",price:32500,km:45400,fuel:"Diesel",kw:110,gear:"Automatski",year:2021,status:"dolazak",body:"suv",prem:1,img:"2026/10/D49099C9-EDF1-4420-9619-FBD383C0ACD8-1024x768.webp",url:"u-dolasku%e2%80%bc%ef%b8%8faudi-q3-35-tdi-s-tronic-sportback-matrix-kamera-navi-s/"},
+ {id:"CC-1009",brand:"VW",model:"VW Arteon",v:"2.0 TDI DSG Elegance",price:27990,km:116400,fuel:"Diesel",kw:110,gear:"Automatski",year:2022,status:"dolazak",body:"sedan",img:"2026/10/1f660601-674c-4dc5-a3ae-e5b10553c172-1024x790.webp",url:"vw-arteon-20-tdi-elegance-dsg-virtual-kamera-servisna-jamstvo/"},
+ {id:"CC-1010",brand:"Mercedes",model:"Mercedes C-klasa",v:"220d",price:31500,km:99600,fuel:"Diesel",kw:147,gear:"Automatski",year:2023,status:"",body:"sedan",prem:1,img:"2026/10/F62DCEE1-B476-4C0A-B01C-ECF11D2A98C4-1024x768.webp",url:"mercedes-benz-c220d-virtual-full-led-kamera-servisna-jamstvo/"},
+ {id:"CC-1011",brand:"Mercedes",model:"Mercedes GLB",v:"180d · 7 sjedala",price:null,km:119500,fuel:"Diesel",kw:85,gear:"Automatski",year:2023,status:"prodano",body:"suv",prem:1,img:"2026/10/BC8DF783-0E04-46D7-BEC0-1166B4A0BA25-1024x768.webp",url:"mercedes-benz-glb-180d-7-sjedala-koza-kamera-navi-servisna-jamstvo/"},
+ {id:"CC-1012",brand:"Audi",model:"Audi Q5",v:"35 TDI S line",price:null,km:112700,fuel:"Diesel",kw:120,gear:"Automatski",year:2021,status:"prodano",body:"suv",prem:1,img:"2026/10/03B59DF0-12CC-4940-80F2-854283958317-1024x768.webp",url:"audi-q5-35-tdi-s-tronic-s-line-sportback-matrix-kamera-navi-servisna-jamstvo/"},
+ {id:"CC-1013",brand:"Peugeot",model:"Peugeot 3008",v:"1.5 BlueHDi EAT8 Active",price:15500,km:152000,fuel:"Diesel",kw:96,gear:"Automatski",year:2020,status:"akcija",body:"suv",img:"2026/08/IMG_2144.webp",url:"peugeot-3008-15-bluehdi-automatiknavigacijaservisnajamstvo/"},
+ {id:"CC-1014",brand:"Peugeot",model:"Peugeot 3008",v:"1.5 BlueHDi",price:18650,km:133020,fuel:"Diesel",kw:96,gear:"Automatski",year:2022,status:"akcija",body:"suv",img:"2026/08/IMG_3169-1024x768.webp",url:"akcijapeugeot-3008-15-bluehdiautomatikledkameraservisnajamstv/"}
+];
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString("de-DE");
+const label={dolazak:"U dolasku",akcija:"Akcija",rezervacija:"Rezervirano",prodano:"Prodano"};
+const APR=.069;
+const rate=(p,down=.2,n=60)=>{const r=APR/12,P=p*(1-down);return Math.round(P*r/(1-Math.pow(1+r,-n)))};
+const vozila=n=>(n%10===1&&n%100!==11)?"vozilo":"vozila";
+let favs=new Set();
+try{favs=new Set(JSON.parse(localStorage.getItem("cc-favs")||"[]"))}catch(e){}
+
+const CATS=[
+ ["sve","Sva vozila","c-all",()=>true],
+ ["suv","SUV","c-suv",c=>c.body==="suv"],
+ ["sedan","Limuzina","c-sedan",c=>c.body==="sedan"],
+ ["auto","Automatik","c-auto",c=>c.gear==="Automatski"],
+ ["akcija","Akcija","c-deal",c=>c.status==="akcija"],
+ ["dolazak","U dolasku","c-soon",c=>c.status==="dolazak"],
+ ["prem","Premium","c-prem",c=>c.prem],
+ ["do20","Do 20.000 €","c-cheap",c=>c.price&&c.price<=20000]
+];
+let cat="sve", q="";
+
+function filters(){
+  return {brand:$("sBrand").value,price:+$("sPrice").value||0,year:+$("sYear").value||0,km:+$("sKm").value||0,
+    gear:$("sGear").value,fuel:$("sFuel").value,rate:+$("sRate").value||0,sort:$("sSort").value,
+    deal:$("tDeal").checked,soon:$("tSoon").checked,hideSold:$("tSold").checked};
+}
+function list(){
+  const f=filters(), cf=CATS.find(x=>x[0]===cat)[3], qq=q.toLowerCase();
+  let L=cars.filter(cf).filter(c=>
+    (!f.brand||c.brand===f.brand)&&(!f.price||(c.price&&c.price<=f.price))&&(!f.year||c.year>=f.year)&&
+    (!f.km||c.km<=f.km)&&(!f.gear||c.gear===f.gear)&&(!f.fuel||c.fuel===f.fuel)&&
+    (!f.rate||(c.price&&rate(c.price)<=f.rate))&&(!f.deal||c.status==="akcija")&&(!f.soon||c.status==="dolazak")&&
+    (!f.hideSold||c.status!=="prodano")&&
+    (!qq||(c.model+" "+c.v+" "+c.fuel+" "+(c.gear==="Automatski"?"automatik automatski dsg":"manualni ručni")).toLowerCase().includes(qq)));
+  if(f.sort==="pa")L.sort((a,b)=>(a.price??1e9)-(b.price??1e9));
+  if(f.sort==="pd")L.sort((a,b)=>(b.price??-1)-(a.price??-1));
+  if(f.sort==="km")L.sort((a,b)=>a.km-b.km);
+  return L;
+}
+function card(c){
+  const sold=c.status==="prodano";
+  return `<article class="car${sold?" sold":""}">
+    <a class="cover" href="${V+c.url}" aria-label="${c.model} ${c.v}"></a>
+    <div class="ph"><img loading="lazy" src="${CDN+c.img}" alt="${c.model} ${c.v}">
+      ${c.status?`<span class="badge ${c.status}">${label[c.status]}</span>`:""}
+      <button class="fav${favs.has(c.id)?" on":""}" data-id="${c.id}" aria-label="Spremi u favorite"><svg><use href="#heart"/></svg></button>
+    </div>
+    <div class="bd">
+      <h3>${c.model}</h3><div class="var">${c.v}</div>
+      <div class="chips">
+        <span><svg><use href="#cal"/></svg>${c.year}</span>
+        <span><svg><use href="#road"/></svg>${fmt(c.km)} km</span>
+        <span><svg><use href="#bolt"/></svg>${c.kw} kW</span>
+        <span><svg><use href="#gear"/></svg>${c.gear==="Automatski"?"Automatik":"Ručni"}</span>
+      </div>
+      <div class="pr">
+        ${sold?`<div><b style="color:var(--muted)">Prodano</b><small>Pitaj za slično vozilo</small></div>`
+        :`<div><b>${fmt(c.price)} €</b><small>PDV uključen</small></div><div class="rate">ili od<strong>${fmt(rate(c.price))} €/mj</strong></div>`}
+      </div>
+    </div>
+  </article>`;
+}
+function render(){
+  const L=list();
+  $("grid").innerHTML=L.length?L.map(card).join(""):`<div class="empty">Nema vozila za odabrane kriterije.<br><a href="#" onclick="resetAll();return false">Poništi filtere</a></div>`;
+  $("count").textContent=`${L.length} ${vozila(L.length)} odgovara odabiru`;
+  $("goLabel").textContent=`Prikaži ${L.length} ${vozila(L.length)}`;
+  $("cats").innerHTML=CATS.map(([k,n,ic])=>`<button class="cat${k===cat?" on":""}" data-k="${k}"><span class="ic"><svg><use href="#${ic}"/></svg></span>${n}</button>`).join("");
+  $("cats").querySelectorAll(".cat").forEach(b=>b.onclick=()=>{cat=b.dataset.k;render()});
+  $("grid").querySelectorAll(".fav").forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();
+    const id=b.dataset.id;favs.has(id)?favs.delete(id):favs.add(id);b.classList.toggle("on");
+    try{localStorage.setItem("cc-favs",JSON.stringify([...favs]))}catch(e){}});
+}
+function setCat(k){cat=k;render();$("ponuda").scrollIntoView({behavior:"smooth"})}
+function goSearch(){render();$("ponuda").scrollIntoView({behavior:"smooth"})}
+function resetAll(){["sBrand","sPrice","sYear","sKm","sGear","sFuel","sRate"].forEach(i=>$(i).value="");$("sSort").value="new";
+  $("tDeal").checked=$("tSoon").checked=false;$("tSold").checked=true;cat="sve";q="";$("qIn").value="";render()}
+document.querySelectorAll(".finder select,.finder input").forEach(el=>el.addEventListener("change",render));
+$("qIn").addEventListener("input",e=>{q=e.target.value.trim();render()});
+$("qIn").addEventListener("keydown",e=>{if(e.key==="Enter")goSearch()});
+
+const brands=[...new Set(cars.map(c=>c.brand))].sort();
+brands.forEach(b=>$("sBrand").insertAdjacentHTML("beforeend",`<option>${b}</option>`));
+$("brandList").innerHTML=brands.map(b=>`<button data-b="${b}">${b}<small>${cars.filter(c=>c.brand===b&&c.status!=="prodano").length}</small></button>`).join("");
+$("brandList").querySelectorAll("button").forEach(b=>b.onclick=()=>{$("sBrand").value=b.dataset.b;cat="sve";goSearch()});
+
+$("dealCars").innerHTML=cars.filter(c=>c.status==="akcija").map(c=>`<a class="dcar" href="${V+c.url}"><img loading="lazy" src="${CDN+c.img}" alt="${c.model}"><div><b>${c.model}</b><span>${c.v} · ${c.year} · ${fmt(c.km)} km</span><span class="p">${fmt(c.price)} €</span></div></a>`).join("");
+
+function findCode(){
+  const v=$("codeIn").value.trim().toUpperCase().replace(/[\s-]/g,"");
+  const c=cars.find(x=>x.id.replace("-","")===v);
+  $("codeRes").innerHTML=!v?"":c?`Pronađeno: <a href="${V+c.url}">${c.model} ${c.v}, ${c.year} →</a>`:`<span style="color:var(--muted)">Vozilo nije pronađeno. Provjeri šifru ili nas nazovi.</span>`;
+}
+
+function calc(){
+  const p=+$("rPrice").value,d=+$("rDown").value,n=+$("rTerm").value;
+  $("vPrice").textContent=fmt(p)+" €";$("vDown").textContent=d+" % · "+fmt(Math.round(p*d/100))+" €";
+  $("vTerm").textContent=n+" mjeseci";$("vRate").innerHTML=fmt(rate(p,d/100,n))+" €<small> /mj</small>";
+  ["rPrice","rDown","rTerm"].forEach(i=>{const e=$(i);e.style.setProperty("--p",((e.value-e.min)/(e.max-e.min)*100)+"%")});
+}
+["rPrice","rDown","rTerm"].forEach(i=>$(i).addEventListener("input",calc));
+
+(function(){const now=new Date(),d=now.getDay(),h=now.getHours()+now.getMinutes()/60;
+  const close=d===6?14:18, open=(d>=1&&d<=5&&h>=9&&h<18)||(d===6&&h>=9&&h<14);
+  $("openState").textContent=open?`Otvoreno danas do ${close}:00`:((d===0||(d===6&&h>=14))?"Vidimo se u ponedjeljak u 9:00":(h<9?"Otvaramo danas u 9:00":"Otvaramo sutra u 9:00"));
+  if(!open)$("openDot").style.cssText="background:#fbbf24;box-shadow:0 0 0 4px rgba(251,191,36,.25)";})();
+$("yr").textContent=new Date().getFullYear();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+render();calc();
+</script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ponuda vozila – Comfort Cars</title>
+<meta name="description" content="Ponuda rabljenih vozila Comfort Cars u Splitu: provjerena vozila iz zapadne Europe s jamstvom i mogućnošću leasinga. Pretraži po marki, cijeni, godini i karoseriji.">
+<link rel="icon" href="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/favicon-32x32-1.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.p-top{background:var(--ink);color:#fff;padding:34px 0 40px;border-radius:0 0 var(--r-xl) var(--r-xl)}
+.p-top .crumbs{font-size:14px;color:#8f9298;display:flex;gap:8px}
+.p-top .crumbs a:hover{color:#fff}
+.p-title{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-top:18px}
+.p-title h1{font-size:clamp(36px,5vw,64px);letter-spacing:-.04em;font-weight:800;line-height:1}
+.p-title .cnt{font-size:15px;color:#a3a6ac}
+.p-title .cnt b{color:#fff;font-size:28px;font-weight:800;letter-spacing:-.02em;margin-right:6px}
+.panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-lg);padding:10px;margin-top:26px}
+.panel .filter{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.panel .sel select{background:#fff;color:var(--ink)}
+.panel .sel select:disabled{background:rgba(255,255,255,.75);color:var(--muted)}
+.panel .row2{display:grid;grid-template-columns:1fr auto;gap:8px;grid-column:1/-1}
+.panel .row2 .btn{grid-column:auto;margin-top:0}
+.soldtog{display:flex;align-items:center;gap:10px;height:52px;padding:0 16px;border-radius:var(--r-sm);background:rgba(255,255,255,.08);color:#d6d7da;font-size:14px;font-weight:500;cursor:pointer;grid-column:span 2}
+.soldtog input{width:18px;height:18px;accent-color:var(--brand)}
+.reset{height:56px;padding:0 22px;border-radius:var(--r-sm);background:rgba(255,255,255,.1);color:#fff;font-weight:600;display:grid;place-items:center}
+.reset:hover{background:rgba(255,255,255,.18)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips a{padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);font-size:14px;font-weight:500;color:#d6d7da;transition:all .2s}
+.chips a:hover{border-color:#fff;color:#fff}
+.chips a.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.brands{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:30px 0 10px;padding-bottom:2px}
+.listbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 26px}
+.bodies{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.sortbox{flex:0 0 auto;display:flex;align-items:center;gap:10px;height:44px;padding:0 6px 0 16px;border-radius:999px;background:var(--ink);color:#fff;cursor:pointer}
+.sortbox span{font-size:13px;color:#a3a6ac;font-weight:500}
+.sortbox select{appearance:none;border:0;outline:none;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23fff' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center;color:#fff;font-weight:600;font-size:14.5px;padding:0 34px 0 0;height:100%;cursor:pointer}
+.sortbox select option{color:var(--ink)}
+@media(max-width:700px){.listbar{flex-direction:column;align-items:stretch}.sortbox{justify-content:space-between}}
+.bodies a{flex:0 0 auto;padding:8px 16px;border-radius:999px;border:1px solid var(--line);font-size:14px;font-weight:500;color:var(--ink-2)}
+.bodies a:hover,.bodies a.on{border-color:var(--ink);color:var(--ink)}
+.bodies a.on{background:var(--ink);color:#fff}
+.bodies a small{opacity:.6;margin-left:4px}
+.brands a{flex:0 0 auto;padding:10px 18px;border-radius:var(--r-sm);background:var(--stone);font-weight:600;font-size:14.5px;transition:background .2s,color .2s}
+.brands a small{color:var(--muted);font-weight:500;margin-left:6px}
+.brands a:hover,.brands a.on{background:var(--ink);color:#fff}
+.brands a.on small,.brands a:hover small{color:#a3a6ac}
+.empty{grid-column:1/-1;background:var(--stone);border-radius:var(--r-lg);padding:56px 24px;text-align:center;color:var(--muted)}
+.empty a{color:var(--brand);font-weight:600}
+@media(max-width:860px){.panel .filter{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<link rel="canonical" href="https://comfortcars.hr/ponuda.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Comfort Cars"><meta property="og:locale" content="hr_HR">
+<meta property="og:title" content="Ponuda vozila – Comfort Cars Split"><meta property="og:description" content="Provjerena rabljena vozila s jamstvom i financiranjem."><meta property="og:url" content="https://comfortcars.hr/ponuda.html">
+<meta property="og:image" content="https://comfortcars.hr/wp-content/uploads/2026/07/bcg-naslovnica-copy.webp"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AutoDealer", "@id": "https://comfortcars.hr/#dealer", "name": "Comfort Cars", "legalName": "SEA MOOD d.o.o.", "url": "https://comfortcars.hr/", "logo": "https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo.svg", "telephone": "+385911100031", "email": "info@comfortcars.eu", "address": {"@type": "PostalAddress", "streetAddress": "Put Krtina", "postalCode": "21212", "addressLocality": "Kaštel Sućurac", "addressCountry": "HR"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00"}], "sameAs": ["https://www.instagram.com/comfortcarscroatia/", "https://www.facebook.com/comfortcarsSplit"]}</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.3-.5-2.4-1.5c-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.8-.7 2-1.5.2-.7.2-1.4.2-1.5-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.8 9.8 0 1 1 8.3 4.6zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Comfort Cars"><img src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo.svg" alt="Comfort Cars"></a>
+    <ul id="menu">
+      <li><a href="index.html">Naslovnica</a></li>
+      <li><a class="on" href="ponuda.html">Ponuda vozila</a></li>
+      <li><a href="index.html#jamstvo">Jamstvo</a></li>
+      <li><a href="index.html#financiranje">Financiranje</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="right">
+      <a class="btn btn-brand" href="https://wa.me/385911100031"><svg class="i" style="fill:#fff"><use href="#wa"/></svg><span class="hide-m">Pošalji poruku</span></a>
+      <button class="burger" aria-label="Izbornik" onclick="document.getElementById('menu').classList.toggle('open')"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+
+<main>
+  <div class="p-top">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Putanja"><a href="index.html">Naslovnica</a><span>/</span><span style="color:#d6d7da">Ponuda vozila</span></nav>
+      <div class="p-title">
+        <h1>Ponuda vozila</h1>
+        <div class="cnt" id="count"></div>
+      </div>
+      <div class="panel">
+        <form class="filter" id="car-filter" action="ponuda.html" method="get">
+          <div class="sel"><select name="marka" aria-label="Marka vozila"><option value="">Marka vozila</option></select></div>
+          <div class="sel"><select name="model" aria-label="Model vozila" disabled><option value="">Model vozila</option></select></div>
+          <div class="sel"><select name="cijena_od" aria-label="Cijena od"><option value="">Cijena od</option></select></div>
+          <div class="sel"><select name="cijena_do" aria-label="Cijena do"><option value="">Cijena do</option></select></div>
+          <div class="sel"><select name="godina_od" aria-label="Godina od"><option value="">Godina od</option></select></div>
+          <div class="sel"><select name="godina_do" aria-label="Godina do"><option value="">Godina do</option></select></div>
+          <div class="sel"><select name="mjenjac" aria-label="Mjenjač"><option value="">Mjenjač</option><option value="Manualni">Manualni</option><option value="Automatski">Automatski</option></select></div>
+          <div class="sel"><select name="vrsta_motora" aria-label="Vrsta motora"><option value="">Vrsta motora</option><option value="Benzin">Benzin</option><option value="Diesel">Diesel</option><option value="Hibrid">Hibrid</option><option value="Električni">Električni</option></select></div>
+          <div class="sel"><select name="karoserija" aria-label="Karoserija"><option value="">Karoserija</option></select></div>
+          <div class="sel"><select name="km_do" aria-label="Kilometraža"><option value="">Kilometraža</option></select></div>
+          <input type="hidden" name="sort" id="sortIn">
+          <label class="soldtog"><input type="checkbox" name="prodano" value="1" id="soldIn"> Prikaži i prodana vozila</label>
+          <input type="hidden" name="status" id="statusIn">
+          <div class="row2">
+            <button class="btn btn-brand" type="submit"><svg class="i"><use href="#search"/></svg>Pretraži</button>
+            <a class="reset" href="ponuda.html">Poništi</a>
+          </div>
+        </form>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="brands" id="brands"></div>
+    <div class="listbar">
+      <div class="bodies" id="bodies"></div>
+      <label class="sortbox"><span>Poredaj</span>
+        <select id="sortSel" aria-label="Poredaj vozila">
+          <option value="">Dostupna prvo</option>
+          <option value="cijena_asc">Cijena: od najniže</option>
+          <option value="cijena_desc">Cijena: od najviše</option>
+          <option value="km">Kilometraža: od najmanje</option>
+          <option value="godina">Godište: od najnovijeg</option>
+        </select>
+      </label>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <img src="https://comfort-cars.b-cdn.net/wp-content/uploads/2026/06/logo-inv-1.svg" alt="Comfort Cars" style="height:22px;width:auto;margin-bottom:16px">
+        <p>Comfort Cars - Prodaja provjerenih rabljenih vozila u Splitu</p>
+        <div class="soc">
+          <a href="https://www.instagram.com/comfortcarscroatia/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.9a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.1-9.4a1.2 1.2 0 1 0 0 2.3 1.2 1.2 0 0 0 0-2.3z"/></svg>Instagram</a>
+          <a href="https://www.facebook.com/comfortcarsSplit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8V6c0-.9.6-1.1 1-1.1h2.6V1H14c-4 0-4.9 3-4.9 4.9V8H6.6v4h2.5v11H14V12h3.3l.4-4H14z"/></svg>Facebook</a>
+          <a href="https://wa.me/385911100031" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Whatsapp</a>
+        </div>
+      </div>
+      <div>
+        <h4>Ponuda</h4>
+        <a class="l" href="ponuda.html?status=akcija">Vozila na akciji</a>
+        <a class="l" href="ponuda.html?mjenjac=Automatski">Vozila s automatskim mjenjačem</a>
+        <a class="l" href="ponuda.html?status=dolazak">Vozila u dolasku</a>
+        <a class="l" href="#kontakt">Kontakt</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a class="ph-big" href="tel:+385911100031">+385 91 110 0031</a>
+        <a class="l" href="mailto:info@comfortcars.eu">info@comfortcars.eu</a>
+        <p style="margin-top:10px">Put Krtina<br>21212 Kaštel Sućurac<br>Hrvatska</p>
+      </div>
+      <div>
+        <h4>Radno vrijeme</h4>
+        <div class="hrs">
+          <div><span>Ponedjeljak - Petak</span><b>09:00 - 18:00</b></div>
+          <div><span>Subota</span><b>09:00 - 14:00</b></div>
+        </div>
+        <p style="margin-top:16px;font-size:13px">SEA MOOD d.o.o.<br>OIB: 28104079997 · MB: 05567076</p>
+      </div>
+    </div>
+    <div class="fmap">
+      <iframe title="Lokacija Comfort Cars" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Comfort+Cars,+Put+Krtina,+21212+Ka%C5%A1tel+Su%C4%87urac&amp;output=embed"></iframe>
+      <div class="fmap-info"><h4>Lokacija trgovine</h4><p>Put Krtina, 21212 Kaštel Sućurac, Hrvatska</p><p>Pon - Pet 09:00 - 18:00 · Subota 09:00 - 14:00</p>
+        <a class="btn btn-brand" href="https://www.google.com/maps/dir/?api=1&amp;destination=Comfort+Cars+Put+Krtina+21212+Ka%C5%A1tel+Su%C4%87urac" target="_blank" rel="noopener">Upute do salona</a></div>
+    </div>
+    <div class="legal">
+      <span>© <span id="yr"></span> Comfort Cars</span>
+      <div><a href="https://comfortcars.hr/opci-uvjeti-poslovanja/">Opći uvjeti poslovanja</a><a href="https://comfortcars.hr/privacy-statement-eu/">Izjava o zaštiti privatnosti</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="vozila-lista.js"></script>
+<script src="cards.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const P=new URLSearchParams(location.search);
+CC.setupForm($("car-filter"),P);
+$("statusIn").value=P.get("status")||"";
+if(!$("statusIn").value)$("statusIn").removeAttribute("name");
+const L=CC.filter(P);
+const n=L.length;
+$("count").innerHTML="<b>"+n+"</b>"+(n%10===1&&n%100!==11?" vozilo":" vozila");
+const svi=CC.all().filter(c=>!CC.isSold(c)),bc={},kc={};svi.forEach(c=>{bc[c.brand]=(bc[c.brand]||0)+1;if(c.karoserija)kc[c.karoserija]=(kc[c.karoserija]||0)+1});
+$("brands").innerHTML=Object.keys(bc).sort((a,b)=>a.localeCompare(b,"hr")).map(b=>`<a href="ponuda.html?marka=${encodeURIComponent(b)}" class="${P.get("marka")===b?"on":""}">${b}<small>${bc[b]}</small></a>`).join("");
+$("bodies").innerHTML=Object.keys(kc).sort((a,b)=>kc[b]-kc[a]).map(k=>`<a href="ponuda.html?karoserija=${encodeURIComponent(k)}" class="${P.get("karoserija")===k?"on":""}">${k}<small>${kc[k]}</small></a>`).join("");
+$("soldIn").checked=P.get("prodano")==="1";
+$("grid").innerHTML=n?L.map(CC.card).join(""):'<div class="empty">Vozilo nije pronađeno.<br><a href="ponuda.html">Prikaži sva vozila</a> · <a href="ponuda.html?prodano=1">uključi i prodana</a></div>';
+const CH=[["ponuda.html","Sva vozila",!P.toString()],
+ ["ponuda.html?status=akcija","vozila na akciji",P.get("status")==="akcija"],
+ ["ponuda.html?status=dolazak","u dolasku",P.get("status")==="dolazak"],
+ ["ponuda.html?mjenjac=Automatski","automatik",P.get("mjenjac")==="Automatski"&&[...P.keys()].length===1],
+ ["ponuda.html?vrsta_motora=Elektri%C4%8Dni","električna",P.get("vrsta_motora")==="Električni"&&[...P.keys()].length===1]];
+$("chips").innerHTML=CH.map(([h,t,on])=>`<a href="${h}" class="${on?"on":""}">${t}</a>`).join("");
+/* prazna polja ne šalji u URL */
+$("car-filter").addEventListener("submit",()=>$("car-filter").querySelectorAll("select").forEach(s=>{if(!s.value)s.removeAttribute("name")}));
+$("soldIn").addEventListener("change",()=>$("car-filter").requestSubmit());
+/* sortiranje: zadrži sve postojeće filtere */
+$("sortSel").value=P.get("sort")||"";
+$("sortIn").value=P.get("sort")||"";if(!$("sortIn").value)$("sortIn").removeAttribute("name");
+$("sortSel").addEventListener("change",e=>{const q=new URLSearchParams(location.search);e.target.value?q.set("sort",e.target.value):q.delete("sort");location.search=q.toString()});
+$("yr").textContent=new Date().getFullYear();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.05});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
