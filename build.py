@@ -159,7 +159,7 @@ def build_pages(items, template):
         shutil.rmtree(OUT_DIR)
     os.makedirs(OUT_DIR)
     # putanje u predlošku postaju apsolutne (stranica je na /vozilo/<slug>/)
-    tpl = re.sub(r'(href|src)="(style\.css|cards\.js|fonts/[^"]*|index\.html[^"]*|ponuda\.html[^"]*)"', r'\1="' + REL + r'\2"', template)
+    tpl = re.sub(r'(href|src)="(style\.css|cards\.js|fonts/[^"]*|uploads/[^"]*|index\.html[^"]*|ponuda\.html[^"]*)"', r'\1="' + REL + r'\2"', template)
     for c in items:
         title = clean_title(c.get("title"))
         price = int(c["price"]) if str(c.get("price") or "").isdigit() else None

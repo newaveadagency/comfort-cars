@@ -287,6 +287,7 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
     <a class="nl" href="#problemi" data-v="problemi"><svg><use href="#bug"/></svg>Prijava problema</a>
     <a class="btn btn-brand new" href="#novi"><svg class="i"><use href="#plus"/></svg>Novi oglas</a>
     <div class="bottom">
+      <a class="nl" href="uredi.html"><svg><use href="#ext"/></svg>Uredi stranicu</a>
       <a class="nl" href="index.html" target="_blank"><svg><use href="#ext"/></svg>Otvori stranicu</a>
       <div class="srv" id="srv"><i></i><span>Provjera servera…</span></div>
     </div>
@@ -298,6 +299,8 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 <div class="toast" id="toast"></div>
 <div class="modal" id="modal"><div class="box"><h3 id="mT"></h3><p id="mP"></p><div class="row"><button class="btn btn-ghost" id="mNo">Odustani</button><button class="btn btn-danger" id="mYes">Obriši</button></div></div></div>
 
+<script src="cms/config.js"></script>
+<script src="cms/gh.js"></script>
 <script src="cards.js?v=1794786565"></script>
 <script src="admin-fin.js?v=1794786565"></script>
 <script>
@@ -305,6 +308,7 @@ const $=s=>document.querySelector(s);
 const fmt=CC.fmt, esc=CC.esc, num=CC.num;
 const LBL={"":"Aktivno",dolazak:"U dolasku",akcija:"Akcija",rezervacija:"Rezervacija",prodano:"Prodano"};
 const MOTORI=["Diesel","Benzin","Hibrid","Električni"], MJENJACI=["Automatski","Manualni"];
+let gh=false, ghSha=null, ghPending={};
 let items=[], upiti=[], online=false, demo=false, filterSt="sve", query="", upFilter="novo";
 const KAROSERIJE=["SUV","Limuzina","Karavan","Hatchback","Monovolumen","Coupe","Kabriolet"];
 
@@ -320,7 +324,9 @@ const cover=v=>v.images&&v.images[0]?v.images[0].mid:"";
 window.VOZILA_LIST=[];
 
 async function load(){
-  try{
+  /* prijavljen u uređivač (GitHub): oglasi se čitaju i spremaju izravno u repozitorij */
+  if(window.GH&&GH.token()){try{const h=await GH.head();ghSha=h.files["vozila.js"];const src=await GH.read("vozila.js");const m=src.match(/window\.VOZILA_LIST\s*=\s*(\[[\s\S]*?\]);\s*\n/);items=JSON.parse(m[1]);gh=true}catch(e){toast("GitHub: "+e.message,true)}}
+  if(!gh)try{
     if(/github\.io$/.test(location.hostname))throw 0;  /* probna objava: nema servera */
     const r=await fetch("/api/vozila",{cache:"no-store"});
     if(!r.ok)throw 0;
@@ -348,11 +354,25 @@ async function load(){
   }
   window.VOZILA_LIST=items;
   $("#upCount").textContent=upiti.filter(u=>u.status==="novo").length;
-  const srv=$("#srv");srv.className="srv "+(online?"ok":"err");srv.querySelector("span").textContent=online?"Server spojen – spremanje radi":demo?"Demo način – promjene samo u ovom pregledniku":"Server nije pokrenut";
-  if(demo)srv.className="srv ok";
+  const srv=$("#srv");srv.className="srv "+(online?"ok":"err");srv.querySelector("span").textContent=gh?"Spojeno – spremanje objavljuje stranicu":online?"Server spojen – spremanje radi":demo?"Demo način – promjene samo u ovom pregledniku":"Server nije pokrenut";
+  if(demo||gh)srv.className="srv ok";
 }
 const demoStore=()=>{try{sessionStorage.setItem("cc-demo",JSON.stringify({items,upiti,fin:finData,kal:kalData}))}catch(e){}};
 async function save(msg){
+  if(gh){
+    try{
+      let json=JSON.stringify(items);const files=[];
+      Object.keys(ghPending).forEach(u=>{if(json.includes(u)){json=json.split(u).join(ghPending[u].path);files.push({path:ghPending[u].path,buffer:ghPending[u].buffer})}});
+      const d=new Date(),p2=n=>String(n).padStart(2,"0");
+      const body=`/* Podaci za Comfort Cars – ${items.length} vozila (uređeno ${p2(d.getDate())}.${p2(d.getMonth()+1)}.${d.getFullYear()}. ${p2(d.getHours())}:${p2(d.getMinutes())}) */\nwindow.VOZILA_LIST = ${json};\nwindow.VOZILA = Object.fromEntries(window.VOZILA_LIST.map(v => [v.slug, v]));\n`;
+      files.unshift({path:"vozila.js",text:body});
+      const sha=await GH.commit("Oglasi: "+(msg||"izmjena"),files,{"vozila.js":ghSha});
+      ghSha=(await GH.head()).files["vozila.js"];items=JSON.parse(json);ghPending={};
+      window.VOZILA_LIST=items;$("#navCount").textContent=items.length;toast((msg||"Spremljeno")+" – objava za ~1 min");
+      const srv=$("#srv span");GH.watchDeploy(sha,(st,sec)=>{srv.textContent=st==="success"?"Objavljeno ✓":st==="failure"?"Objava nije uspjela":"Objavljuje se… "+sec+" s"});
+      return true;
+    }catch(e){toast(e.conflict?"Oglasi su u međuvremenu promijenjeni s drugog mjesta. Osvježite stranicu.":"Spremanje nije uspjelo: "+e.message,true);return false}
+  }
   if(demo){window.VOZILA_LIST=items;$("#navCount").textContent=items.length;demoStore();toast((msg||"Spremljeno")+" (demo)");return true}
   if(!online){toast("Server nije pokrenut – promjene nisu spremljene.",true);return false}
   try{
@@ -548,9 +568,9 @@ function vEditor(slug){
 
   const resize=(bmp,max)=>new Promise(res=>{const sc=Math.min(1,max/Math.max(bmp.width,bmp.height));const c=document.createElement("canvas");
     c.width=Math.round(bmp.width*sc);c.height=Math.round(bmp.height*sc);c.getContext("2d").drawImage(bmp,0,0,c.width,c.height);c.toBlob(b=>res(b),"image/webp",.85)});
-  const upload=async blob=>{if(demo)return URL.createObjectURL(blob);const r=await fetch("/api/upload",{method:"POST",headers:{"Content-Type":blob.type||"image/webp"},body:blob});const j=await r.json();if(!r.ok)throw new Error(j.error);return j.url};
+  const upload=async blob=>{if(demo)return URL.createObjectURL(blob);if(gh){const u=URL.createObjectURL(blob);ghPending[u]={path:GH.uploadPath("webp"),buffer:await blob.arrayBuffer()};return u}const r=await fetch("/api/upload",{method:"POST",headers:{"Content-Type":blob.type||"image/webp"},body:blob});const j=await r.json();if(!r.ok)throw new Error(j.error);return j.url};
   async function addFiles(files){
-    if(!online&&!demo){toast("Za dodavanje fotografija pokreni server (python3 server.py).",true);return}
+    if(!online&&!demo&&!gh){toast("Za dodavanje fotografija pokreni server (python3 server.py).",true);return}
     for(const file of [...files]){
       if(!/^image\/(jpeg|png|webp)$/.test(file.type)){toast(file.name+": nepodržan format",true);continue}
       const im={loading:true,preview:URL.createObjectURL(file)};d.images.push(im);renderPics();

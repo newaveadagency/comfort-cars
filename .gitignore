@@ -1,5 +1,6 @@
 # privatno / lokalno
-data/
+data/*
+!data/slike-velicine.json
 backup/
 *.tmp
 __pycache__/
@@ -9,3 +10,6 @@ vozilo/
 
 # reklama (brag)
 brag-output*/
+
+# objava (generira objava.py)
+_site/
