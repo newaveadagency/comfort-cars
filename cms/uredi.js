@@ -113,6 +113,7 @@
     // dijelovi koje puni JavaScript (iz cms/config.js) - samo u uređivaču
     Object.keys(C.dynamic || {}).forEach(function (sel) { $$(sel, d).forEach(function (el) { el.setAttribute("data-cms-dyn", C.dynamic[sel]); }); });
     (C.locked || []).forEach(function (sel) { $$(sel, d).forEach(function (el) { el.setAttribute("data-cms-lock", ""); }); });
+    $$(".cms-demo", d).forEach(function (el) { el.remove(); }); // gumb iz probne objave (demo način čita objavljenu stranicu)
     S.scripts = [];
     $$("script", d).forEach(function (s) { var t = d.createElement("template"); t.setAttribute("data-cms-s", S.scripts.length); S.scripts.push(s.outerHTML); s.replaceWith(t); });
     $$("*", d).forEach(function (el) {
