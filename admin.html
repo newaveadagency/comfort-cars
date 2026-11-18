@@ -363,7 +363,7 @@ async function save(msg){
 }
 
 /* ---------- prikazi ---------- */
-const offlineNote=()=>demo?`<div class="offline demo"><b>Demo admin panel.</b> Slobodno isprobajte: dodajte oglas, promijenite status, pregledajte upite. Promjene se spremaju samo u ovom pregledniku i ne mijenjaju javnu stranicu. <a href="#" onclick="sessionStorage.removeItem('cc-demo');location.reload();return false">Vrati početno stanje</a></div>`:`<div class="offline" style="display:${online?"none":"block"}"><b>Server nije pokrenut.</b> Pregled radi, ali spremanje i slike ne. U Terminalu, u mapi <code>comfort_cars</code>, pokreni <code>python3 server.py</code> i otvori <code>http://localhost:8000/admin.html</code>.</div>`;
+const offlineNote=()=>demo?`<div class="offline demo"><b>Demo admin panel.</b> Slobodno isprobajte: dodajte oglas, promijenite status, pregledajte upite. Promjene se spremaju samo u ovom pregledniku i ne mijenjaju javnu stranicu. <a href="#" onclick="sessionStorage.removeItem('cc-demo');location.reload();return false">Vrati početno stanje</a></div>`:`<div class="offline" style="display:${online?"none":"block"}"><b>Server nije pokrenut.</b> Pregled radi, ali spremanje i slike ne. U Terminalu, u mapi <code>web stranice/comfort cars</code>, pokreni <code>python3 server.py</code> i otvori <code>http://localhost:8000/admin.html</code>.</div>`;
 const topbar=(t,p,right="")=>`<div class="top"><div style="display:flex;gap:12px;align-items:center"><button class="ib mtoggle" onclick="$('#side').classList.toggle('open')" aria-label="Izbornik"><svg><use href="#list"/></svg></button><div><h1>${t}</h1>${p?`<p>${p}</p>`:""}</div></div>${right}</div>`;
 
 function vPregled(){

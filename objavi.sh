@@ -1,6 +1,6 @@
 #!/bin/bash
 # Objava stranice na GitHub Pages (grana gh-pages).
-# Pokretanje iz mape comfort_cars:   ./objavi.sh
+# Pokretanje iz mape "web stranice/comfort cars":   ./objavi.sh
 # Za pravu objavu (indeksiranje na Googleu):   PREVIEW=0 ./objavi.sh
 set -euo pipefail
 cd "$(dirname "$0")"

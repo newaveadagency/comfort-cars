@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Lokalni server za Comfort Cars stranicu i dashboard za oglase.
 
-Pokretanje (iz mape comfort_cars):
+Pokretanje (iz mape "web stranice/comfort cars"):
     python3 server.py
 Zatim otvori:
     http://localhost:8000/            – stranica
