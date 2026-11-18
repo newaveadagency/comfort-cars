@@ -13,10 +13,12 @@ import shutil
 import subprocess
 import time
 
-DEMO_BTN = ('<a href="{href}" class="cms-demo" style="position:fixed;left:16px;bottom:16px;z-index:90;display:inline-flex;'
-            'align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:999px;background:#111827;color:#fff;'
-            'font:600 14px system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);text-decoration:none">'
-            '<span style="width:8px;height:8px;border-radius:50%;background:#22c55e"></span>{text}</a>')
+DEMO_WRAP = ('<div class="cms-demo" style="position:fixed;left:16px;bottom:16px;z-index:90;display:flex;flex-direction:column;'
+             'align-items:flex-start;gap:8px">{links}</div>')
+DEMO_BTN = ('<a href="{href}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:999px;'
+            'background:#111827;color:#fff;font:600 14px system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);'
+            'text-decoration:none;border:1px solid rgba(255,255,255,.15)"><span style="width:8px;height:8px;border-radius:50%;'
+            'background:{dot}"></span>{text}</a>')
 
 
 def sha():
@@ -29,7 +31,7 @@ def sha():
         return str(int(time.time()))
 
 
-def collect(root, public, out="_site", preview=None, demo_pages=(), demo_href="uredi.html?demo", demo_text="Uredi stranicu (demo)"):
+def collect(root, public, out="_site", preview=None, demo_pages=(), demo_buttons=(("uredi.html?demo", "Uredi stranicu (demo)"),)):
     preview = os.environ.get("PREVIEW", "1") == "1" if preview is None else preview
     out = os.path.join(root, out)
     if os.path.isdir(out):
@@ -57,7 +59,9 @@ def collect(root, public, out="_site", preview=None, demo_pages=(), demo_href="u
             if preview and 'name="robots"' not in s:
                 s = s.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
             if preview and rel in demo_pages:
-                s = s.replace("</body>", DEMO_BTN.format(href=demo_href, text=demo_text) + "\n</body>", 1)
+                dots = ("#22c55e", "#ff4713", "#3b82f6")
+                links = "".join(DEMO_BTN.format(href=h, text=t, dot=dots[i % 3]) for i, (h, t) in enumerate(demo_buttons))
+                s = s.replace("</body>", DEMO_WRAP.format(links=links) + "\n</body>", 1)
             open(p, "w", encoding="utf-8").write(s)
     json.dump({"sha": sha(), "time": int(time.time())}, open(os.path.join(out, "version.json"), "w"))
     print(f"✓ _site spreman ({'probna objava, noindex' if preview else 'javna objava'}), verzija {v}")

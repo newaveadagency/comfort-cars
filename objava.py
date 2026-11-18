@@ -21,4 +21,5 @@ objava_cms.collect(ROOT, [
     "index.html", "ponuda.html", "vozilo.html", "admin.html", "admin-fin.js", "404.html",
     "style.css", "cards.js", "vozila.js", "vozila-lista.js", "sitemap.xml", "robots.txt",
     "vozilo", "uploads", "fonts", "uredi.html", "cms",
-], demo_pages=("index.html", "ponuda.html"))
+], demo_pages=("index.html", "ponuda.html"),
+   demo_buttons=(("admin.html", "Dashboard (demo)"), ("uredi.html?demo", "Uredi stranicu (demo)")))
